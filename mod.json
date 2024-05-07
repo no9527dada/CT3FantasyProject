@@ -1,0 +1,11 @@
+{
+  "name": "ct_fantasy_project",
+  "main": "FantasyProject.FantasyProject",
+  "displayName": "创世神3-DLC.幻想工程",
+  "author": "104原创：皮皮 146重置：[pink]编[cyan]号[red]95[violet]27，皴皲",
+  "description": "重置:9527，贴图:皴皲，本DLC为104的MOD重置",
+  "version": "0.1",
+  "minGameVersion": 146,
+  "dependencies": ["ct"]
+}
+
