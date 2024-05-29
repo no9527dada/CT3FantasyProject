@@ -78,8 +78,8 @@ public class FantasyProjectPower {
                     //碳板,5
             ));
             size = 2;
-            powerProduction = 160 / 60f;
-            itemDuration = 60;
+            powerProduction = 220 / 60f;
+            itemDuration = 150;
             itemCapacity = 15;
             ambientSound = Sounds.smelter;
             ambientSoundVolume = 0.03f;
@@ -98,7 +98,6 @@ public class FantasyProjectPower {
             requirements(power, with(
                     lead, 70,
                     copper, 80,
-                    碳板, 20,
                     铁, 90,
                     silicon, 120
             ));
@@ -396,8 +395,8 @@ public class FantasyProjectPower {
                     钻石, 200,
                     固体放射物, 150
             ));
-            explosionRadius = 10 * 8;
-            explosionDamage = 4500;
+/*            explosionRadius = 10 * 8;
+            explosionDamage = 4500;*/
             itemCapacity = 30;
             liquidCapacity = 100;
             ambientSound = Sounds.hum;

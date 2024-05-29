@@ -2,6 +2,7 @@ package FantasyProject.content;
 
 import arc.Core;
 import arc.graphics.Color;
+import ct.Asystem.type.BulletType.CT3LaserBulletType;
 import ct.content.NewColor;
 import ct.content.Effect.NewEffect;
 import ct.content.Effect.NewFx;
@@ -44,7 +45,7 @@ import static mindustry.type.ItemStack.with;
 public class FantasyProjectTurrets {
     public static Block 真双管炮, 咻咻炮, 制裁, 灭亡, 毁灭, 散射炮,
                         追动, 光棱塔, 超级光棱塔, 起源, 皇后, 帝王, 空之驱逐, 空中祸害,
-                        魂灭, 魄散, 尘埃,
+                        魂灭, 魄散, 尘埃,终焉,
             炮塔aaa;
 
     public static void load() {
@@ -52,20 +53,20 @@ public class FantasyProjectTurrets {
             //localizedName = Core.bundle.get("Turret.真双管炮");
             requirements(Category.turret, with(Items.copper, 35, graphite, 10));
             ammo(
-                    Items.copper, new BasicBulletType(2.5f, 9) {{
+                    Items.copper, new BasicBulletType(2.5f, 18) {{
                         width = 10f;
                         height = 13f;
                         lifetime = 60f;
                         ammoMultiplier = 2;
                     }},
-                    graphite, new BasicBulletType(3.5f, 18) {{
+                    graphite, new BasicBulletType(3.5f, 25) {{
                         width = 10f;
                         height = 13f;
                         reloadMultiplier = 0.6f;
                         ammoMultiplier = 4;
                         lifetime = 60f;
                     }},
-                    Items.silicon, new BasicBulletType(4f, 12) {{
+                    Items.silicon, new BasicBulletType(4f, 33) {{
                         width = 10f;
                         height = 13f;
                         homingPower = 0.1f;
@@ -73,7 +74,7 @@ public class FantasyProjectTurrets {
                         ammoMultiplier = 5;
                         lifetime = 60f;
                     }},
-                    石英, new BasicBulletType(4f, 15) {{
+                    石英, new BasicBulletType(4f, 20) {{
                         width = 11f;
                         height = 13f;
                         homingPower = 0.1f;
@@ -131,8 +132,8 @@ public class FantasyProjectTurrets {
             ammo(
                     copper, new BasicBulletType() {{
                         speed = 3;
-                        damage = 10;
-                        pierce = true;
+                        damage = 15;
+
                         width = 11;
                         height = 10;
                         shootEffect = shootBig;
@@ -143,22 +144,22 @@ public class FantasyProjectTurrets {
                     }},
                     铁, new BasicBulletType() {{
                         speed = 3.5f;
-                        damage = 25;
-                        pierce = true;
+                        damage = 30;
+
                         width = 15;
                         height = 10;
                         shootEffect = shootBig;
                         smokeEffect = shootSmallSmoke;
-                        ammoMultiplier = 2;
-                        reloadMultiplier = 0.5f;
+                        ammoMultiplier = 3;
+                        reloadMultiplier = 1.3f;
                         lifetime = 咻咻炮lifetime;
                     }},
                     石英, new BasicBulletType() {{
                         speed = 3.5f;
-                        damage = 11;
+                        damage = 18;
                         width = 11;
                         height = 10;
-                        pierce = true;
+                       // pierce = true;//穿透
                         shootEffect = shootBig;
                         smokeEffect = shootSmallSmoke;
                         ammoMultiplier = 4;
@@ -167,9 +168,9 @@ public class FantasyProjectTurrets {
                     }},
                     silicon, new BasicBulletType() {{
                         speed = 3.5f;
-                        damage = 13;
+                        damage = 22;
                         width = 15;
-                        pierce = true;
+                        //pierce = true;
                         height = 10;
                         shootEffect = shootBig;
                         smokeEffect = shootSmallSmoke;
@@ -179,10 +180,10 @@ public class FantasyProjectTurrets {
                     }},
                     graphite, new BasicBulletType() {{
                         speed = 5;
-                        damage = 15;
+                        damage = 20;
                         width = 11;
                         height = 10;
-                        pierce = true;
+                       // pierce = true;
                         shootEffect = shootBig;
                         smokeEffect = shootSmallSmoke;
                         ammoMultiplier = 1;
@@ -191,13 +192,13 @@ public class FantasyProjectTurrets {
                     }},
                     硬直弹, new BasicBulletType() {{
                         speed = 3;
-                        damage = 49;
+                        damage = 52;
                         width = 13;
                         height = 11;
                         shootEffect = shootBig;
                         smokeEffect = shootSmallSmoke;
                         ammoMultiplier = 3;
-                        reloadMultiplier = 0.8f;
+                        reloadMultiplier = 1.3f;
                         lifetime = 咻咻炮lifetime;
                     }}
             );
@@ -228,27 +229,27 @@ public class FantasyProjectTurrets {
                 ammoUseEffect = NewFx.子弹抛壳(3, 20, Color.valueOf("27bbf3"), 制裁Bullet颜色, Pal.lightishGray);//弹壳脱壳动画效果
                 shootSound = loadSound("制裁");
                 ammo(
-                        copper, new FantasyProjectBullets.制裁Bullet(40, 12, 10),
-                        lead, new FantasyProjectBullets.制裁Bullet(40, 12, 10),
-                        silicon, new FantasyProjectBullets.制裁Bullet(70, 22, 6) {{
+                        copper, new FantasyProjectBullets.制裁Bullet(40, 25, 10),
+                        lead, new FantasyProjectBullets.制裁Bullet(40, 23, 10),
+                        silicon, new FantasyProjectBullets.制裁Bullet(70, 33, 6) {{
                             reloadMultiplier = 0.8f;
                             homingPower = 1;
                             homingRange = 60;
                         }},
 
-                        graphite, new FantasyProjectBullets.制裁Bullet(40, 22, 10) {{
+                        graphite, new FantasyProjectBullets.制裁Bullet(40, 30, 10) {{
                             reloadMultiplier = 0.7f;
                         }},
-                        titanium, new FantasyProjectBullets.制裁Bullet(40, 17, 10) {{
+                        titanium, new FantasyProjectBullets.制裁Bullet(40, 30, 10) {{
                             reloadMultiplier = 1.5f;
                         }},
-                        碎裂弹, new FantasyProjectBullets.制裁Bullet(40, 10, 10) {{
+                        碎裂弹, new FantasyProjectBullets.制裁Bullet(40, 45, 10) {{
                             ammoMultiplier = 10;
                             reloadMultiplier = 0.8f;
                             pierce = false;
                             despawnEffect = Fx.none;
                             hitEffect = Fx.blastExplosion;
-                            fragBullet = new BasicBulletType(2.5f, 5, "bullet") {{
+                            fragBullet = new BasicBulletType(2.5f, 20, "bullet") {{
                                 width = 10f;
                                 height = 12f;
                                 shrinkY = 1f;
@@ -260,12 +261,12 @@ public class FantasyProjectTurrets {
                             }};
                             fragBullets = 10;
                         }},
-                        硬直弹, new FantasyProjectBullets.制裁Bullet(40, 45, 10) {{
+                        硬直弹, new FantasyProjectBullets.制裁Bullet(40, 60, 10) {{
                             ammoMultiplier = 10;
                             status = StatusEffects.electrified;
                             statusDuration = 30;
                         }},
-                        冷冻弹, new FantasyProjectBullets.制裁Bullet(40, 12, 10) {{
+                        冷冻弹, new FantasyProjectBullets.制裁Bullet(40, 20, 10) {{
                             reloadMultiplier = 0.3f;
                             pierce = true;
                             status = StatusEffects.freezing;
@@ -377,7 +378,7 @@ public class FantasyProjectTurrets {
                                 铁, 5
                         ));
                         shootCone = 40;
-        
+
                         inaccuracy = 0;
                         recoil = 7;//后座力动画
                         reload = 45;//射速
@@ -391,12 +392,12 @@ public class FantasyProjectTurrets {
                         targetGround = false;
                         range = 250;
                         ammo(
-                                lead, new FantasyProjectBullets.散射炮Bullet(17, 20, 15, 1f, 1),
+                                lead, new FantasyProjectBullets.散射炮Bullet(17, 15, 15, 1f, 1),
                                 sand, new FantasyProjectBullets.散射炮Bullet(17, 12, 15, 1f, 1),
-                                石英, new FantasyProjectBullets.散射炮Bullet(17, 35, 15, 1f, 2),
-                                metaglass, new FantasyProjectBullets.散射炮Bullet(17, 28, 15, 1f, 1),
-                                graphite, new FantasyProjectBullets.散射炮Bullet(17, 23, 15, 1f, 1),
-                                silicon, new FantasyProjectBullets.散射炮Bullet(17, 30, 15, 1f, 2)
+                                石英, new FantasyProjectBullets.散射炮Bullet(17, 20, 15, 1f, 2),
+                                metaglass, new FantasyProjectBullets.散射炮Bullet(17, 18, 15, 1f, 1),
+                                graphite, new FantasyProjectBullets.散射炮Bullet(17, 20, 15, 1f, 1),
+                                silicon, new FantasyProjectBullets.散射炮Bullet(17, 20, 15, 1f, 2)
                         );
                     }
                 };
@@ -410,39 +411,41 @@ public class FantasyProjectTurrets {
                                 铁, 30
                         ));
                         shootCone = 40;
-        
+                        consumePower(90/60f);
                         recoil = 7;//后座力动画
                         reload = 63;//射速
                         shoot.shots = 5;
                         shoot.shotDelay = 5;
                         rotateSpeed = 10f;
-                        targetAir = targetGround = true;
+                        targetAir = false;
+                                targetGround = true;
                         health = 1800;
                         size = 3;
                         shootSound = missile;
                         range = 180 + 80;
                         inaccuracy = 5;
+                        ammoPerShot = 4;
                         ammo(
-                                铁, new FantasyProjectBullets.追动Bullet(20, 32, 15, 1f, 1),
-                                graphite, new FantasyProjectBullets.追动Bullet(20, 13, 15, 1f, 1),
-                                sand, new FantasyProjectBullets.追动Bullet(20, 4, 15, 1.5f, 1),
-                                coal, new FantasyProjectBullets.追动Bullet(20, 6, 15, 1.3f, 1),
-                                冷冻弹, new FantasyProjectBullets.追动Bullet(20, 10, 15, 1.5f, 1) {{
+                                铁, new FantasyProjectBullets.追动Bullet(20, 38, 15, 1.2f, 4),
+                                graphite, new FantasyProjectBullets.追动Bullet(20, 25, 15, 1f, 2),
+                                sand, new FantasyProjectBullets.追动Bullet(20, 12, 15, 1.5f, 1),
+                                coal, new FantasyProjectBullets.追动Bullet(20, 15, 15, 1.3f, 1),
+                                冷冻弹, new FantasyProjectBullets.追动Bullet(20, 20, 15, 1.5f, 4) {{
                                     status = StatusEffects.freezing;
                                     statusDuration = 15;
                                 }},
 
-                                碳板, new FantasyProjectBullets.追动Bullet(200, 15, 3, 1f, 1) {{
+                         /*       碳板, new FantasyProjectBullets.追动Bullet(200, 15, 3, 1f, 4) {{
                                     sprite = "ct-baojian";
                                     height = 40;
                                     width = 12;
                                     homingPower = 0.00769f;
                                     homingRange = 38;
-                                }},
+                                }},*/
 
 
-                                lead, new FantasyProjectBullets.追动Bullet(20, 15, 15, 1.2f, 1),
-                                copper, new FantasyProjectBullets.追动Bullet(20, 13, 15, 1.2f, 1)
+                                lead, new FantasyProjectBullets.追动Bullet(20, 20, 15, 1.2f, 1),
+                                copper, new FantasyProjectBullets.追动Bullet(20, 20, 15, 1.2f, 1)
                         );
                     }
                 };
@@ -621,13 +624,13 @@ public class FantasyProjectTurrets {
                         shoot.shots = 5;
                         shoot.shotDelay = 6;
                         ammo(
-                                金, new FantasyProjectBullets.皇后Bullet(1200, 2, 3, 1.5F),
-                                铁, new FantasyProjectBullets.皇后Bullet(100F, 2, 2, 1.2F),
-                                thorium, new FantasyProjectBullets.皇后Bullet(90, 2, 2, 1),
+                                金, new FantasyProjectBullets.皇后Bullet(120, 4, 3, 1.5F),
+                                铁, new FantasyProjectBullets.皇后Bullet(100F, 3, 2, 1.2F),
+                                thorium, new FantasyProjectBullets.皇后Bullet(90, 1, 2, 1),
                                 blastCompound, new FantasyProjectBullets.皇后Bullet(110, 2, 2, 1.2F),
-                                钻石, new FantasyProjectBullets.皇后Bullet(180, 4, 2, 1),
-                                钴, new FantasyProjectBullets.皇后Bullet(150, 3, 2, 1.7F),
-                                硬直弹, new FantasyProjectBullets.皇后Bullet(280, 5, 2, 1.3F) {{
+                                钻石, new FantasyProjectBullets.皇后Bullet(180, 4, 10, 1),
+                                钴, new FantasyProjectBullets.皇后Bullet(150, 2, 6, 1.7F),
+                                硬直弹, new FantasyProjectBullets.皇后Bullet(280, 5, 10, 1.3F) {{
                                     status = StatusEffects.electrified;
                                     statusDuration = 30;
                                 }}
@@ -747,8 +750,6 @@ public class FantasyProjectTurrets {
                 };
                 空中祸害 = new ItemTurret("空中祸害") {
                     {
-                        //localizedName = Core.bundle.get("Turret.空中祸害");
-                        description = Core.bundle.get("Turret.description.空中祸害");
                         requirements(Category.turret, with(
                                 copper, 12000,
                                 lead, 15000,
@@ -832,8 +833,6 @@ public class FantasyProjectTurrets {
                     }
                 };
                 魂灭 = new LaserTurret("魂灭") {{
-                    //localizedName = Core.bundle.get("Turret.魂灭");
-                    description = Core.bundle.get("Turret.description.魂灭");
                     requirements(Category.turret, with(
                             Items.copper, 1200,
                             Items.lead, 350,
@@ -872,8 +871,6 @@ public class FantasyProjectTurrets {
                     consumePower(17f);
                 }};
                 魄散 = new PowerTurret("魄散") {{
-                    //localizedName = Core.bundle.get("Turret.魄散");
-                    description = Core.bundle.get("Turret.description.魄散");
                     requirements(Category.turret, with(
                             Items.copper, 1200,
                             Items.lead, 350,
@@ -929,11 +926,62 @@ public class FantasyProjectTurrets {
                     consumePower(17f);
                 }};
 
+                终焉 = new LaserTurret("终焉"){{
+                    requirements(Category.turret, with(
+                            copper, 12000,
+                            lead, 15000,
+                            液电池, 5000,
+                            镍板, 2100,
+                            钴, 3400,
+                            石英, 6500,
+                            钻石, 2800,
+                            相织硅, 2300,
+                            啸动合金, 800
 
+                    ));
+                    shootEffect = Fx.shootBigSmoke2;
+                    shootCone = 40f;
+                    recoil = 4f;
+                    size = 16;
+                    shake = 2f;
+                    reload = 90f;
+                    range = 150 * 8;
+                    firingMoveFract = 0.5f;
+                    shootDuration = 15 * 60;//发射持续时间
+                    //shoot.firstShotDelay = 200;//蓄力射击延迟
+                    shootSound = Sounds.laserbig;
+                    loopSound = Sounds.beam;
+                    loopSoundVolume = 2f;
+                    // envEnabled |= Env.space;
+                    rotateSpeed = 0.3f;//转速
+
+                    shootType = new CT3LaserBulletType(72000/12f){{
+                        length = 150 * 8;
+                        hitEffect = Fx.hitMeltdown;
+                        hitColor = Pal.meltdownHit;
+                        status = StatusEffects.melting;
+                        width = 30;//宽
+                        frontLength=100;
+                        incendChance = 0.4f;
+                        incendSpread = 5f;
+                        incendAmount = 1;
+                        ammoMultiplier = 1f;
+                        // fadeTime = 180;//淡入淡出时间
+                        // colors = new Color[]{Color.valueOf("ec745855"), Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
+                        //   lifetime = 15 * 60;
+
+                    }};
+
+                    scaledHealth = 200;
+                    coolant = consumeCoolant(0.5f);
+                    liquidCapacity = 120;
+                    coolantMultiplier = 0.05f; //液体冷却倍率
+                    consumePower(50000/60f);
+                    consumeLiquid(啸冷剂,30/60f).update(true);
+                    unitSort = UnitSorts.farthest;//最远//攻击单位时的优先选择/closest/farthest/strongest/weakest
+                }};
                 尘埃 = new ItemTurret("尘埃") {
                     {
-                        //localizedName = Core.bundle.get("Turret.尘埃");
-                        description = Core.bundle.get("Turret.description.尘埃");
                         requirements(Category.turret, with(
                                 copper, 12000,
                                 lead, 15000,
@@ -947,7 +995,7 @@ public class FantasyProjectTurrets {
                                 黎辉水晶, 100
 
                         ));
-                        unitSort = UnitSorts.strongest;//攻击单位时的优先选择/closest/farthest/strongest/weakest
+                        unitSort = UnitSorts.strongest;//最强//攻击单位时的优先选择/closest/farthest/strongest/weakest
                         consumePower(6500 / 60f);
                         targetGround = targetAir = true; //空地
                         inaccuracy = 13;//精度
@@ -965,19 +1013,19 @@ public class FantasyProjectTurrets {
                         shootSound = laserblast;
                         chargeSound = none;
                         moveWhileCharging = true;
-                        //  shoot.firstShotDelay = 300;//第一次射击延迟
-                        shoot.firstShotDelay = 200;
+                        shoot.firstShotDelay = 200;//蓄力射击延迟
                         shake = 4;
                         rotateSpeed = 4;
                         liquidCapacity = 60;
                         coolantMultiplier = 0f; //液体冷却倍率
                         consumeLiquid(啸冷剂, 10 / 60f);
-                        consumePower(45000 / 60f);
+                        consumePower(250000 / 60f);
                         ammo(
                                 啸动合金, new FantasyProjectBullets.尘埃Bullet()
                         );
                     }
                 };
+
             }
         };
     }

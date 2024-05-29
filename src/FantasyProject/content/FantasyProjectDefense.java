@@ -81,7 +81,7 @@ public class FantasyProjectDefense{
         // 大型相织硅墙
         大型相织硅墙 = new Wall("大型相织硅墙") {{
             //localizedName = "大型相织硅墙";
-            requirements(defense, with(相织硅, 100, 镍板, 40));
+            requirements(defense, with(相织硅, 50, 镍板, 25));
             chanceDeflect = 20f;
             flashHit = true;
             health = 5500;
@@ -93,11 +93,11 @@ public class FantasyProjectDefense{
         // 钴墙
         钴墙 = new Wall("钴墙") {{
             //localizedName = "钴墙";
-            requirements(defense, with(钴, 100, surgeAlloy, 70));
+            requirements(defense, with(钴, 30));
             lightningChance = 0.1f;
             lightningDamage = 15;
             lightningLength = 10;
-            health = 800;
+            health = 1500;
             size = 1;
             buildCostMultiplier = 5;
             envDisabled |= Env.scorching;
@@ -107,11 +107,11 @@ public class FantasyProjectDefense{
         // 大型钴墙
         大型钴墙 = new Wall("大型钴墙") {{
             //localizedName = "大型钴墙";
-            requirements(defense, with(钴, 350, surgeAlloy, 120));
+            requirements(defense, with(钴, 70));
             lightningChance = 0.1f;
             lightningDamage = 20;
             lightningLength = 15;
-            health = 3000;
+            health = 5300;
             size = 2;
             buildCostMultiplier = 7;
             envDisabled |= Env.scorching;
@@ -121,39 +121,39 @@ public class FantasyProjectDefense{
         钛合金墙 = new Wall("钛合金墙") {{
             //localizedName = "钛合金墙";
             requirements(defense, with(钛合金, 10, 固体放射物, 10));
-            health = 2000;
+            health = 3200;
             size = 1;
-            buildCostMultiplier = 10;
+            buildCostMultiplier = 5;
             envDisabled |= Env.scorching;
         }};
 
 
         大型钛合金墙 = new Wall("大型钛合金墙") {{
             //localizedName = "大型钛合金墙";
-            requirements(defense, with(钛合金, 60, 固体放射物, 30));
-            health = 5500;
+            requirements(defense, with(钛合金, 60, 固体放射物, 20));
+            health = 7500;
             size = 2;
-            buildCostMultiplier = 10;
+            buildCostMultiplier = 5;
             envDisabled |= Env.scorching;
         }};
 
 
         巨型钛合金墙 = new Wall("巨型钛合金墙") {{
             //localizedName = "巨型钛合金墙";
-            requirements(defense, with(钛合金, 170, 固体放射物, 70));
+            requirements(defense, with(钛合金, 120, 固体放射物, 40));
             health = 11000;
             size = 3;
-            buildCostMultiplier = 10;
+            buildCostMultiplier = 5;
             envDisabled |= Env.scorching;
         }};
 
 
         超大型钛合金墙 = new Wall("超大型钛合金墙") {{
             //localizedName = "超大型钛合金墙";
-            requirements(defense, with(钛合金, 350, 固体放射物, 120, 钴, 210));
+            requirements(defense, with(钛合金, 210, 固体放射物, 90, 钴, 130));
             health = 15500;
             size = 4;
-            buildCostMultiplier = 10;
+            buildCostMultiplier = 5;
             envDisabled |= Env.scorching;
         }};
 

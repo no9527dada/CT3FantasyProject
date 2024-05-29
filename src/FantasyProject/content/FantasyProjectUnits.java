@@ -111,7 +111,7 @@ public class FantasyProjectUnits {
         }};
         T1单位工厂=new CreatorsUnitFactory("T1单位工厂") {{
             solid = false;
-            unitLimit = 2;
+            unitLimit = 4;
             requirements(Category.units, with(
                     铜, 50,铅, 40, 硅, 20
             ));
@@ -129,7 +129,7 @@ public class FantasyProjectUnits {
         }};
         T2单位工厂=new CreatorsUnitFactory("T2单位工厂") {{
             solid = false;
-            unitLimit = 2;
+            unitLimit = 4;
             requirements(Category.units, with(
                     铜, 50,铅, 40,石英,45, 铁, 20,钛,60
             ));
@@ -145,7 +145,7 @@ public class FantasyProjectUnits {
         }};
         T3单位工厂=new CreatorsUnitFactory("T3单位工厂") {{
             solid = false;
-            unitLimit = 1;
+            unitLimit = 3;
             requirements(Category.units, with(
                    金 , 50,钴, 30, 铁板, 20,钍,90
             ));

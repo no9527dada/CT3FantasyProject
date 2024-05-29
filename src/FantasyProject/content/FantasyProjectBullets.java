@@ -182,7 +182,7 @@ public class FantasyProjectBullets {
             lifetime = lifetimee;
             damage = damagee * 3 / 4;
             speed = speedd;
-
+            pierce=true;//穿透
             width = 10;
             height = 13;
             ammoMultiplier = 倍率;
@@ -197,8 +197,8 @@ public class FantasyProjectBullets {
             trailEffect = none;
             // trailInterval=3f;
             //trailChance = 0.3f;
-            splashDamage = damagee * 3;//范围伤害,负值禁用
-            splashDamageRadius = 4.5f * 8;//范围伤害的范围
+ /*           splashDamage = damagee * 3;//范围伤害,负值禁用
+            splashDamageRadius = 4.5f * 8;//范围伤害的范围*/
             collidesAir = collidesGround = true;//对空对地
                        /*子弹消失时的效果，可能和hitEffect有些相似。
             不同的是这个效果只会显示一次，如果是hitEffect可能会在多个目标上显示，比如子弹贯穿多个单位或建筑*/
@@ -238,7 +238,8 @@ public class FantasyProjectBullets {
             //trailChance = 0.3f;
             splashDamage = -1;//范围伤害,负值禁用
             splashDamageRadius = 0;//范围伤害的范围
-            collidesAir = collidesGround = true;//对空对地
+            collidesAir =false;//对空
+                    collidesGround = true;//对空对地
                        /*子弹消失时的效果，可能和hitEffect有些相似。
             不同的是这个效果只会显示一次，如果是hitEffect可能会在多个目标上显示，比如子弹贯穿多个单位或建筑*/
             despawnEffect = Fx.blastExplosion; //NewFx.制裁子弹消失;

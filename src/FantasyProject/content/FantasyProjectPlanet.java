@@ -64,6 +64,8 @@ public class FantasyProjectPlanet {
                         additiveReconstructor,
                         multiplicativeReconstructor,
                         exponentialReconstructor,
+                        payloadConveyor,
+                        payloadRouter,
                         tetrativeReconstructor);
                 r.unitAmmo = true;//单位需要子弹
                 r.showSpawns = true;//显示单位刷出点

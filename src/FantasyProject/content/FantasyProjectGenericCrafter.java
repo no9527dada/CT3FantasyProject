@@ -17,6 +17,7 @@ import mindustry.world.Block;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.production.Separator;
 import mindustry.world.draw.*;
+import mindustry.world.meta.BuildVisibility;
 
 import static FantasyProject.content.FantasyProjectItems.*;
 import static arc.graphics.g2d.Draw.color;
@@ -51,7 +52,10 @@ public class FantasyProjectGenericCrafter {
 
     //            outputLiquid = new LiquidStack(Liquids.slag, 12f / 60f);
     public static void load() {
-
+/*        new gg("fgf"){{
+            requirements(crafting, with());
+            buildVisibility=BuildVisibility.shown;
+        }};*/
         石英提取机 = new GenericCrafter("石英提取机") {{
 
             //localizedName = "石英提取机";
@@ -308,7 +312,7 @@ public class FantasyProjectGenericCrafter {
             consumeItems(with(Items.scrap, 2));
             // consumeLiquid(Liquids.water, 0.1f);
             consumePower(160 / 60f);
-            outputItem = new ItemStack(sand, 3);
+            outputItem = new ItemStack(sand, 5);
             health = 130;
             itemCapacity = 15;
             size = 2;
@@ -323,7 +327,7 @@ public class FantasyProjectGenericCrafter {
                     Items.copper, 150,
                     Items.lead, 100,
                     铁板, 30,
-                    钴, 20
+                    碳板, 20
             ));
             drawer = new DrawMulti(new DrawDefault(), new DrawRegion("-rotator") {{
                 spinSprite = true;

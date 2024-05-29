@@ -1,6 +1,7 @@
 package FantasyProject.content;
 
 
+import ct.Asystem.type.LaserMassDriver;
 import ct.Asystem.type.LinksSt0rageBlock;
 import mindustry.content.Items;
 import mindustry.entities.bullet.MassDriverBolt;
@@ -426,7 +427,6 @@ public class FantasyProjectWuLiu {
             group = BlockGroup.transportation;
         }};
 
-
         数据驱动器 = new MassDriver("数据驱动器") {{
             //localizedName = "数据驱动器";
             requirements(distribution, with(
@@ -438,7 +438,7 @@ public class FantasyProjectWuLiu {
             size = 2;
             itemCapacity = 75;
             reload = 80f;
-            range = 60 * 8f;
+            range = 43 * 8f;
             knockback = 3;
             health = 150;
             shake = 0.3f;
@@ -473,9 +473,8 @@ public class FantasyProjectWuLiu {
             group = BlockGroup.transportation;
         }};
 
-        质量驱逐器 = new MassDriver("质量驱逐器") {
+        质量驱逐器 = new LaserMassDriver("激光质量驱逐器") {
             {
-                //localizedName = "质量驱逐器";
                 requirements(distribution, with(
                         silicon, 450,
                         titanium, 370,
@@ -485,29 +484,16 @@ public class FantasyProjectWuLiu {
                 ));
                 size = 4;
                 itemCapacity = 750;
-                reload = 120f;
-                range = 150 * 8f;
+                reload = 5f;
+                range = 230 * 8f;
                 knockback = 8;
                 health = 800;
                 shake = 0.5f;
-                bulletLifetime = 1000;
-                minDistribute = itemCapacity / 2;
-                bullet = new MassDriverBolt();
-                consumePower(15f);
+                bulletLifetime = 10*60f;//子弹存在时间
+                minDistribute = 3;
+                consumePower(1500/60f);
                 group = BlockGroup.transportation;
-                buildType = Build::new;
-            }
 
-            class Build extends MassDriverBuild {
-                public void updateTile() {
-                    super.updateTile();
-                    if (this.state == MassDriver.DriverState.idle || this.state == MassDriver.DriverState.accepting) {
-                        var Times = 20;//输出速度倍率写 2 总输出速度为默认的 200%
-                        for (var i = 0; i < Times; i++) {
-                            this.dumpAccumulate();
-                        }
-                    }
-                }
             }
         };
 

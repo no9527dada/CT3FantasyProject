@@ -48,57 +48,43 @@ public class FantasyProjectMaps {
             captureWave = 150;
             difficulty = 10;
         }};
-        海岸线 = new SectorPreset("CT3coastline", FantasyPlanet, 108) {{
+        海岸线 = new SectorPreset("CT3coastline", FantasyPlanet, 108) {{//边际海岸
             captureWave = 240;
             difficulty = 10;
         }};
-        /*盐碱荒滩 = new SectorPreset("CT3saltFlats", FantasyPlanet, 101) {{
-            difficulty = 5;
+        盐碱荒滩 = new SectorPreset("CT3saltFlats", FantasyPlanet, 101) {{
+            difficulty = 7;
         }};
-
-
-
-
-
-
-
-
         提取前哨 = new SectorPreset("CT3extractionOutpost", FantasyPlanet, 165) {{
-            difficulty = 5;
+            difficulty = 9;
         }};
-//边际海岸
-
         海军要塞 = new SectorPreset("CT3navalFortress", FantasyPlanet, 216) {{
             difficulty = 9;
         }};
-
         真菌通道 = new SectorPreset("CT3fungalPass", FantasyPlanet, 21) {{
-            difficulty = 4;
+            difficulty = 9;
         }};
-
         增生区 = new SectorPreset("CT3overgrowth", FantasyPlanet, 134) {{
-            difficulty = 5;
+            difficulty = 9;
         }};
-
-        油田 = new SectorPreset("CT3tarFields", FantasyPlanet, 23) {{
-            captureWave = 40;
-            difficulty = 5;
-        }};
-
         冲击区 = new SectorPreset("CT3impact0078", FantasyPlanet, 227) {{
-            captureWave = 45;
+            captureWave = 121;
             difficulty = 7;
         }};
-
+        油田 = new SectorPreset("CT3tarFields", FantasyPlanet, 23) {{
+            captureWave = 131;
+            difficulty = 5;
+        }};
+        核矩阵 = new SectorPreset("CT3nuclearComplex", FantasyPlanet, 130) {{
+            captureWave = 140;
+            difficulty = 9;
+        }};
         荒芜裂谷 = new SectorPreset("CT3desolateRift", FantasyPlanet, 123) {{
-            captureWave = 18;
+            captureWave = 453;
             difficulty = 8;
         }};
 
-        核矩阵 = new SectorPreset("CT3nuclearComplex", FantasyPlanet, 130) {{
-            captureWave = 50;
-            difficulty = 7;
-        }};
+        /*
 
         行星发射终端 = new SectorPreset("CT3planetaryTerminal", FantasyPlanet, 93) {{
             difficulty = 10;
