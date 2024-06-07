@@ -55,7 +55,7 @@ public class FantasyProjectPlanet {
             allowWaveSimulation = false;//模拟后台波次
             accessible = true;
             //TODO SHOULD there be lighting?
-            updateLighting = false;
+            updateLighting = true;//模拟白天黑夜  开启星球自转
             ruleSetter = r -> {
                 r.bannedBlocks.addAll(//禁用方块
                         groundFactory,

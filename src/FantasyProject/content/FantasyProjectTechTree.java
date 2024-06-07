@@ -371,7 +371,6 @@ public class FantasyProjectTechTree {
                                 node(油田, Seq.with(new Objectives.SectorComplete(冲击区)), () -> {
                                     node(核矩阵, Seq.with(new Objectives.SectorComplete(油田)), () -> {
                                         node(荒芜裂谷, Seq.with(new Objectives.SectorComplete(核矩阵)), () -> {
-
                                         });
                                     });
                                 });
@@ -382,6 +381,8 @@ public class FantasyProjectTechTree {
                                 node(风吹海岛, Seq.with(new Objectives.SectorComplete(废墟海岸)), () -> {
                                     node(海岸线, Seq.with(new Objectives.SectorComplete(风吹海岛)), () -> {
                                         node(海军要塞, Seq.with(new Objectives.SectorComplete(海岸线)), () -> {
+                                            node(行星发射终端, Seq.with(new Objectives.SectorComplete(海军要塞)), () -> {
+                                            });
                                         });
                                     });
                                 });

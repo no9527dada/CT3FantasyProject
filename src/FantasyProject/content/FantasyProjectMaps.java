@@ -83,15 +83,10 @@ public class FantasyProjectMaps {
             captureWave = 453;
             difficulty = 8;
         }};
-
-        /*
-
         行星发射终端 = new SectorPreset("CT3planetaryTerminal", FantasyPlanet, 93) {{
             difficulty = 10;
             isLastSector = true;
         }};
-
-*/
 
 
     }
