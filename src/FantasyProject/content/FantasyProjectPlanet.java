@@ -47,7 +47,7 @@ public class FantasyProjectPlanet {
             bloom = true;
             startSector = 100;
             alwaysUnlocked = true;
-            clearSectorOnLose = true;//扇区丢失时是否重置地图
+            clearSectorOnLose = false;//扇区丢失时是否重置地图
             enemyCoreSpawnReplace = false;//攻击图核心变刷怪点
             allowLaunchSchematics = false;//开启发射核心蓝图
             allowLaunchLoadout = false;//开启携带资源发射
@@ -71,7 +71,7 @@ public class FantasyProjectPlanet {
                 r.showSpawns = true;//显示单位刷出点
                 r.unitCapVariable=false;//核心增加单位上限
                 r.unitCap = 9999;//单位上限
-                //r.onlyDepositCore = true;//物品只能存放在核心
+                r.onlyDepositCore = false;//物品只能存放在核心 关闭
                 r.coreDestroyClear = true;//死亡时(敌人)核心半径内的每个敌人方块都会被摧毁。
                 r.teams.get(Team.sharded).unitHealthMultiplier = 1.8f;//己方单位血量
                 r.teams.get(Team.crux).unitDamageMultiplier = 1.2f;//敌人单位伤害

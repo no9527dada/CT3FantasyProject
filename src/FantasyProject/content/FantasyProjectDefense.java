@@ -1,5 +1,7 @@
 package FantasyProject.content;
 
+import CtCoreSystem.CoreSystem.type.Ovulam5480.JumpQi;
+import mindustry.content.Items;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.ForceProjector;
 import mindustry.world.blocks.defense.MendProjector;
@@ -10,7 +12,7 @@ import mindustry.world.meta.Env;
 
 
 import static FantasyProject.content.FantasyProjectItems.*;
-import static ct.Asystem.type.CTTechTree.addToTree;
+import static CtCoreSystem.CoreSystem.type.CTTechTree.addToTree;
 import static mindustry.content.Blocks.*;
 import static mindustry.content.Items.*;
 import static mindustry.type.Category.*;
@@ -18,7 +20,7 @@ import static mindustry.type.ItemStack.with;
 
 //方块
 public class FantasyProjectDefense{
-    public static Block 聚能投影械, 增幅投影器, 极速投影器, 大型维修点, 增幅修复仪, 聚能修复仪,增幅护盾仪,
+    public static Block 聚能投影械, 增幅投影器, 极速投影器, 大型维修点, 跳波器,增幅修复仪, 聚能修复仪,增幅护盾仪,
                         铅墙, 大型铅墙, 硅墙, 大型硅墙, 相织硅墙, 大型相织硅墙, 钴墙, 大型钴墙,
                         钛合金墙, 大型钛合金墙, 巨型钛合金墙, 超大型钛合金墙;
 
@@ -158,6 +160,13 @@ public class FantasyProjectDefense{
         }};
 
 //功能
+        跳波器=new JumpQi("跳波器"){{
+            requirements(effect, with(
+                    Items.copper, 15,
+                    Items.lead, 20,
+                    铁, 50
+            ));
+        }};
         大型维修点 = new RepairTurret("大型维修点") {{
             //localizedName = "大型维修点";
             repairSpeed = 1.5f;

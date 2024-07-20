@@ -1,14 +1,20 @@
 package FantasyProject.content;
 
+import arc.Core;
 import arc.struct.Seq;
-import ct.Asystem.type.factory.CreatorsUnitFactory;
+import CtCoreSystem.CoreSystem.type.factory.CreatorsUnitFactory;
+import mindustry.Vars;
 import mindustry.ai.types.MinerAI;
 import mindustry.content.Liquids;
+import mindustry.game.Team;
 import mindustry.type.Category;
 import mindustry.type.UnitType;
 import mindustry.world.Block;
+import mindustry.world.Tile;
+import mindustry.world.blocks.storage.CoreBlock;
 
 import static FantasyProject.content.FantasyProjectItems.*;
+import static FantasyProject.content.FantasyProjectUnitsSuu.*;
 import static mindustry.content.UnitTypes.*;
 import static mindustry.type.ItemStack.with;
 
@@ -17,11 +23,9 @@ public class FantasyProjectUnits {
     public static UnitType 魂灵2,魂灵;
     public static Block
             独影矿机工厂,幻型建造机工厂,巨像修复机工厂, T1单位工厂,T2单位工厂 ,T3单位工厂,T4单位工厂,魂灵运输机工厂,
-            fff;
+            雷霆战机模拟器,fff;
 
     public static void load() {
-
-
         魂灵= new UnitType("魂灵"){{
             controller = u -> new MinerAI();
             canAttack = false;//关闭单位的武器,功能性单位
@@ -58,7 +62,7 @@ public class FantasyProjectUnits {
         }};
         独影矿机工厂=new CreatorsUnitFactory("独影矿机工厂") {{
             solid = false;
-            unitLimit = 2;
+            unitLimit = 3;
             requirements(Category.units, with(
                     铜, 130, 硅, 50
             ));
@@ -178,5 +182,59 @@ public class FantasyProjectUnits {
             consumeLiquid(Liquids.cryofluid, 0.4f);
             floating = true;
         }};
+        雷霆战机模拟器=new CreatorsUnitFactory("雷霆战机模拟器") {{
+            solid = false;
+            unitLimit = 2;
+            requirements(Category.units, with(
+                    铁, 30, 布, 40,铜,100,铅,100
+            ));
+            plans = Seq.with(
+                    new UnitPlan(天穹, 60f * 5, with(金,100)),
+                    new UnitPlan(飞鹰, 60f * 5, with(铁板,50)),
+                    new UnitPlan(秃鹫, 60f * 5, with(镍板,50)),
+                    new UnitPlan(战鹰, 60f * 5, with(钻石,80)),
+                    new UnitPlan(天泽, 60f * 5, with(钛合金,100))
+            );
+            size = 5;
+            consumePower(1000 / 60f);
+            floating = true;
+            buildCostMultiplier = 0;
+        }
+            //  数字代表允许建筑的数量，最多是数字的值+1
+            public int 数量 = 1;
+
+            //瞬间替换和扣除物品
+            @Override
+            public void placeBegan(Tile tile, Block previous) {
+                if (!Vars.state.rules.infiniteResources) {
+                    CoreBlock.CoreBuild core = Vars.player.team().core();
+                    core.items.remove(requirements);
+                }
+                tile.setBlock(this, tile.team());
+                tile.block().placeEffect.at(tile, tile.block().size);
+            }
+
+            //允许放置
+            @Override
+            public boolean canPlaceOn(Tile tile, Team team, int rotation) {
+                CoreBlock.CoreBuild core = team.core();
+                //size后面数字代表允许建筑的数量，最多是数字的值+1
+                if (core == null || Vars.state.teams.get(team).getBuildings(this).size > 数量 - 1
+                        || (!Vars.state.rules.infiniteResources && !core.items.has(requirements, Vars.state.rules.buildCostMultiplier)
+                )) return false;
+                return super.canPlaceOn(tile, team, rotation);
+            }
+
+            //显示红字
+            @Override
+            public void drawPlace(int x, int y, int rotation, boolean valid) {
+                CoreBlock.CoreBuild core = Vars.player.team().core();
+                if (!Vars.state.rules.infiniteResources && !core.items.has(requirements, Vars.state.rules.buildCostMultiplier)) {
+                    drawPlaceText(Core.bundle.format("bar.noresources"), x, y, valid);
+                } else if (Vars.state.teams.get(Vars.player.team()).getBuildings(this).size > 数量 - 1)
+                    drawPlaceText(Core.bundle.get("QuantityLimit.限制最大数量") + 数量, x, y, valid);
+                super.drawPlace(x, y, rotation, valid);
+            }
+        };
     }
 }

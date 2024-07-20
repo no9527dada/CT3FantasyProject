@@ -14,7 +14,7 @@ import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
 
 import static FantasyProject.content.FantasyProjectItems.*;
-import static ct.Asystem.type.CTTechTree.addToTree;
+import static CtCoreSystem.CoreSystem.type.CTTechTree.addToTree;
 import static mindustry.content.Liquids.oil;
 
 import static mindustry.content.Blocks.*;

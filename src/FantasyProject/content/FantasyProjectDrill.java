@@ -11,7 +11,7 @@ import mindustry.world.meta.Env;
 
 
 import static FantasyProject.content.FantasyProjectItems.*;
-import static ct.Asystem.type.CTTechTree.addToTree;
+import static CtCoreSystem.CoreSystem.type.CTTechTree.addToTree;
 import static mindustry.content.Blocks.*;
 import static mindustry.content.Fx.*;
 import static mindustry.content.Items.*;
@@ -81,7 +81,7 @@ public class FantasyProjectDrill {
 
         中型抽水机 = new SolidPump("中型抽水机") {{
             //localizedName = "中型抽水机";
-            consumePower(3f);
+            consumePower(120/60f);
 
             requirements(production, with(
                     copper, 60,
@@ -240,8 +240,8 @@ public class FantasyProjectDrill {
             ));
             liquidCapacity = 60f;
             health = 100;
-            outputItem = new ItemStack(Items.sporePod, 3);
-            craftTime = 122;
+            outputItem = new ItemStack(Items.sporePod, 6);
+            craftTime = 120;
             size = 3;
             hasLiquids = true;
             hasPower = true;
@@ -262,7 +262,7 @@ public class FantasyProjectDrill {
             maxBoost = 2f;
             liquidCapacity = 20;
             consumePower(2);
-            consumeLiquid(Liquids.water, 0.5f);
+            consumeLiquid(Liquids.water, 20/60f);
         }};
 
 

@@ -6,10 +6,9 @@ import arc.graphics.g2d.Fill;
 import arc.math.Interp;
 import arc.math.Mathf;
 import arc.util.Tmp;
-import ct.content.Effect.CT3FxEffect;
-import ct.content.NewColor;
-import ct.content.Effect.NewEffect;
-import ct.content.Effect.NewFx;
+import CtCoreSystem.content.Effect.CT3FxEffect;
+import CtCoreSystem.content.Effect.NewEffect;
+import CtCoreSystem.content.Effect.NewFx;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.Effect;
@@ -25,9 +24,9 @@ import mindustry.graphics.Drawf;
 import mindustry.graphics.Layer;
 import mindustry.graphics.Pal;
 
+import static CtCoreSystem.content.NewColor.*;
 import static arc.graphics.g2d.Draw.color;
-import static ct.Asystem.CT3Sound.loadSound;
-import static ct.content.NewColor.*;
+import static CtCoreSystem.CoreSystem.CT3Sound.loadSound;
 import static mindustry.content.Fx.*;
 import static mindustry.gen.Sounds.laser;
 import static mindustry.gen.Sounds.plasmaboom;
@@ -94,7 +93,7 @@ public class FantasyProjectBullets {
             smokeEffect = shootSmallSmoke;
             ammoMultiplier = 5;
             pierce = true;
-            trailColor = NewColor.制裁Bullet颜色;
+            trailColor = 制裁Bullet颜色;
             trailParam = 2;
             trailLength = 5;
             trailWidth = 2;
@@ -125,7 +124,7 @@ public class FantasyProjectBullets {
             smokeEffect = shootSmallSmoke;//发射时产生额外的烟雾效果。
             ammoMultiplier = 倍率;
             reloadMultiplier = 射速;
-            trailColor = NewColor.灭亡Bullet颜色;
+            trailColor = 灭亡Bullet颜色;
             trailParam = 2;
             trailLength = 8;
             trailWidth = 3;
@@ -153,7 +152,7 @@ public class FantasyProjectBullets {
             shootEffect = shootBig;
             smokeEffect = shootSmallSmoke;
             //pierce = true;
-            trailColor = NewColor.毁灭Bullet颜色;
+            trailColor = 毁灭Bullet颜色;
             trailParam = 2;
             trailLength = 18;
             trailWidth = 8;
@@ -180,7 +179,7 @@ public class FantasyProjectBullets {
         public 散射炮Bullet(float lifetimee, float damagee, float speedd, float 射速, float 倍率) {
             // super();
             lifetime = lifetimee;
-            damage = damagee * 3 / 4;
+            damage = damagee ;
             speed = speedd;
             pierce=true;//穿透
             width = 10;
@@ -190,7 +189,7 @@ public class FantasyProjectBullets {
             shootEffect = shootBig;
             smokeEffect = shootSmallSmoke;
             //pierce = true;
-            trailColor = NewColor.毁灭Bullet颜色;
+            trailColor = 毁灭Bullet颜色;
             trailParam = 2;
             trailLength = 50;
             trailWidth = 2;
@@ -224,7 +223,7 @@ public class FantasyProjectBullets {
             shootEffect = shootBig;
             smokeEffect = shootSmallSmoke;
             //pierce = true;
-            trailColor = NewColor.毁灭Bullet颜色;
+            trailColor = 毁灭Bullet颜色;
             trailParam = 2;
             trailLength = 3;
             trailWidth = 2;
@@ -274,8 +273,8 @@ public class FantasyProjectBullets {
                                 lifetime = 50;
                                 strokeFrom = 5f;
                                 strokeTo = 0f;
-                                colorFrom = NewColor.光棱塔Bullet1;
-                                colorTo = NewColor.光棱塔Bullet2;
+                                colorFrom = 光棱塔Bullet1;
+                                colorTo = 光棱塔Bullet2;
                             }},
                     };
                 }
@@ -295,8 +294,8 @@ public class FantasyProjectBullets {
                                 lenTo = 11;
                                 strokeFrom = 3;
                                 cone = 0;
-                                colorFrom = NewColor.光棱塔Bullet1;
-                                colorTo = NewColor.光棱塔Bullet2;
+                                colorFrom = 光棱塔Bullet1;
+                                colorTo = 光棱塔Bullet2;
                             }},
                     };
                 }
@@ -346,8 +345,8 @@ public class FantasyProjectBullets {
                                 lifetime = 50;
                                 strokeFrom = 5f;
                                 strokeTo = 0f;
-                                colorFrom = NewColor.光棱塔Bullet1;
-                                colorTo = NewColor.光棱塔Bullet2;
+                                colorFrom = 光棱塔Bullet1;
+                                colorTo = 光棱塔Bullet2;
                             }},
                     };
                 }
@@ -368,8 +367,8 @@ public class FantasyProjectBullets {
                                 lenTo = 11;
                                 strokeFrom = 6;
                                 cone = 0;
-                                colorFrom = NewColor.光棱塔Bullet1;
-                                colorTo = NewColor.光棱塔Bullet2;
+                                colorFrom = 光棱塔Bullet1;
+                                colorTo = 光棱塔Bullet2;
                             }},
                     };
                 }
@@ -377,7 +376,7 @@ public class FantasyProjectBullets {
             hitSound = loadSound("hit光棱2");
             fragBullets = 5;
             fragBullet = new LaserBulletType(800) {{
-                colors = new Color[]{NewColor.光棱塔Bullet1.cpy().a(0.4f), NewColor.光棱塔Bullet1, NewColor.光棱塔Bullet2};
+                colors = new Color[]{光棱塔Bullet1.cpy().a(0.4f), 光棱塔Bullet1, 光棱塔Bullet2};
                 //TODO merge
                 chargeEffect = new NewEffect.BulletWaveEffect() {{
                     sizeFrom = 0f;
@@ -386,8 +385,8 @@ public class FantasyProjectBullets {
                     lifetime = 20;
                     strokeFrom = 2f;
                     strokeTo = 0f;
-                    colorFrom = NewColor.光棱塔Bullet1;
-                    colorTo = NewColor.光棱塔Bullet2;
+                    colorFrom = 光棱塔Bullet1;
+                    colorTo = 光棱塔Bullet2;
                 }};
                 collidesAir = collidesGround = true;
                 //buildingDamageMultiplier = 0.25f;
@@ -523,7 +522,7 @@ public class FantasyProjectBullets {
                 //for visual stats only.
                 buildingDamageMultiplier = 0.25f;
                 spin=2;
-                trailColor = NewColor.制裁Bullet颜色;
+                trailColor = 制裁Bullet颜色;
                 trailParam = 2;
                 trailLength = 5;
                 trailWidth = 1;
@@ -740,8 +739,8 @@ public class FantasyProjectBullets {
                     lifetime = 40;
                     strokeFrom = 2f;
                     strokeTo = 0f;
-                    colorFrom = NewColor.帝王Bullet颜色1;
-                    colorTo = NewColor.帝王Bullet颜色2;
+                    colorFrom = 帝王Bullet颜色1;
+                    colorTo = 帝王Bullet颜色2;
                 }};
                 homingDelay = 50;//追踪延迟
                 homingRange = 90 * 8;//追踪范围
@@ -755,8 +754,8 @@ public class FantasyProjectBullets {
                 lifetime = 20;
                 strokeFrom = 2f;
                 strokeTo = 0f;
-                colorFrom = NewColor.光棱塔Bullet1;
-                colorTo = NewColor.光棱塔Bullet2;
+                colorFrom = 光棱塔Bullet1;
+                colorTo = 光棱塔Bullet2;
             }};
             fragRandomSpread = -45f;
         }

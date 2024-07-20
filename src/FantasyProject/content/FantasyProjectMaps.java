@@ -1,10 +1,10 @@
 package FantasyProject.content;
 
-import ct.content.chapter1.Planet1;
+
 import mindustry.type.SectorPreset;
 
 import static FantasyProject.content.FantasyProjectPlanet.FantasyPlanet;
-import static mindustry.content.Planets.serpulo;
+
 
 public class FantasyProjectMaps {
     public static SectorPreset 零号, 盐碱荒滩, 冰冻森林, 生物质合成区, 陨石坑, 废墟海岸, 风吹海岛, 绵延群山, 提取前哨, 海岸线,

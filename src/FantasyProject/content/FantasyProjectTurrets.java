@@ -1,11 +1,15 @@
 package FantasyProject.content;
 
-import arc.Core;
+import CtCoreSystem.content.Effect.NewFx;
 import arc.graphics.Color;
-import ct.Asystem.type.BulletType.CT3LaserBulletType;
-import ct.content.NewColor;
-import ct.content.Effect.NewEffect;
-import ct.content.Effect.NewFx;
+import arc.graphics.g2d.Draw;
+import CtCoreSystem.CoreSystem.type.BulletType.CT3LaserBulletType;
+import CtCoreSystem.CoreSystem.type.BulletType.CT3PaiBulletType;
+import CtCoreSystem.CoreSystem.type.Ovulam5480.GuDingTurret;
+import CtCoreSystem.content.Effect.NewEffect;
+import CtCoreSystem.content.Effect.NewFx;
+import CtCoreSystem.content.NewColor;
+import mindustry.Vars;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
@@ -20,6 +24,7 @@ import mindustry.entities.pattern.ShootHelix;
 import mindustry.entities.pattern.ShootPattern;
 import mindustry.entities.pattern.ShootSpread;
 import mindustry.gen.Sounds;
+import mindustry.graphics.Layer;
 import mindustry.graphics.Pal;
 import mindustry.type.Category;
 import mindustry.type.StatusEffect;
@@ -30,8 +35,8 @@ import mindustry.world.blocks.defense.turrets.PowerTurret;
 import mindustry.world.draw.DrawTurret;
 
 import static FantasyProject.content.FantasyProjectItems.*;
-import static ct.Asystem.CT3Sound.loadSound;
-import static ct.content.NewColor.制裁Bullet颜色;
+import static CtCoreSystem.CoreSystem.CT3Sound.loadSound;
+import static CtCoreSystem.content.NewColor.*;
 
 
 import static mindustry.content.Fx.shootBig;
@@ -45,10 +50,11 @@ import static mindustry.type.ItemStack.with;
 public class FantasyProjectTurrets {
     public static Block 真双管炮, 咻咻炮, 制裁, 灭亡, 毁灭, 散射炮,
                         追动, 光棱塔, 超级光棱塔, 起源, 皇后, 帝王, 空之驱逐, 空中祸害,
-                        魂灭, 魄散, 尘埃,终焉,
+                        魂灭, 魄散, 排山,尘埃,终焉,
             炮塔aaa;
 
     public static void load() {
+
         真双管炮 = new ItemTurret("真双管炮") {{
             //localizedName = Core.bundle.get("Turret.真双管炮");
             requirements(Category.turret, with(Items.copper, 35, graphite, 10));
@@ -381,7 +387,7 @@ public class FantasyProjectTurrets {
 
                         inaccuracy = 0;
                         recoil = 7;//后座力动画
-                        reload = 45;//射速
+                        reload = 40;//射速
                         //shoot.shots = 2;
                         // shoot.shotDelay=30;
                         shoot = new ShootSpread(7, 10f);
@@ -392,12 +398,12 @@ public class FantasyProjectTurrets {
                         targetGround = false;
                         range = 250;
                         ammo(
-                                lead, new FantasyProjectBullets.散射炮Bullet(17, 15, 15, 1f, 1),
-                                sand, new FantasyProjectBullets.散射炮Bullet(17, 12, 15, 1f, 1),
-                                石英, new FantasyProjectBullets.散射炮Bullet(17, 20, 15, 1f, 2),
-                                metaglass, new FantasyProjectBullets.散射炮Bullet(17, 18, 15, 1f, 1),
-                                graphite, new FantasyProjectBullets.散射炮Bullet(17, 20, 15, 1f, 1),
-                                silicon, new FantasyProjectBullets.散射炮Bullet(17, 20, 15, 1f, 2)
+                                lead, new FantasyProjectBullets.散射炮Bullet(17, 15, 30, 1f, 1),
+                                sand, new FantasyProjectBullets.散射炮Bullet(17, 12, 18, 1f, 1),
+                                石英, new FantasyProjectBullets.散射炮Bullet(17, 20, 23, 1f, 2),
+                                metaglass, new FantasyProjectBullets.散射炮Bullet(17, 18, 25, 1f, 1),
+                                graphite, new FantasyProjectBullets.散射炮Bullet(17, 20, 35, 1f, 1),
+                                silicon, new FantasyProjectBullets.散射炮Bullet(17, 20, 40, 1f, 2)
                         );
                     }
                 };
@@ -426,6 +432,7 @@ public class FantasyProjectTurrets {
                         inaccuracy = 5;
                         ammoPerShot = 4;
                         ammo(
+                                钍, new FantasyProjectBullets.追动Bullet(20, 28, 15, 1.2f, 4),
                                 铁, new FantasyProjectBullets.追动Bullet(20, 38, 15, 1.2f, 4),
                                 graphite, new FantasyProjectBullets.追动Bullet(20, 25, 15, 1f, 2),
                                 sand, new FantasyProjectBullets.追动Bullet(20, 12, 15, 1.5f, 1),
@@ -925,8 +932,58 @@ public class FantasyProjectTurrets {
                     coolant = consumeCoolant(0.5f);//液体消耗量
                     consumePower(17f);
                 }};
+                排山= new GuDingTurret("排山") {{
+                    reload = 80f;
+                    range = 80*8;
+                    shootCone = 45f;
+                    ammoUseEffect = Fx.casing1;
+                    health = 400;
+                    inaccuracy = 0f;
+                    size=5;初始额外角度=90;
+                    configurable = true;
+                    rotateSpeed = 2f;
+                    targetAir = true; //空
+                    targetGround = true; //地
+                    shootSound=Vars.tree.loadSound("DONG");
+                    requirements(Category.turret, with(Items.copper, 450, graphite, 320,钻石,50,镍板,120,铁,300,钛合金,80));
+                    ammo(
+                            硬直弹,new CT3PaiBulletType() {{
+                                speed=20;
+                                lifetime = 50f;
+                                damage=3000;
+                                absorbable = false;
+                                sprite = "ct_fantasy_project-zidan6";
+                                frontColor = Color.valueOf("ffffff");
+                                backColor = Color.valueOf("76e9ff");
+                                shrinkY = 0;
+                                子弹宽度 =width = 300;
+                                height =30f;
+                                collidesAir =
+                                        collidesGround = true;
+                                hitEffect = shootEffect = smokeEffect = Fx.none;
+                                pierce = true;//穿透
+                                pierceBuilding = true;
+                                lifetime = 50f;
+                                buildingDamageMultiplier = 0.5f;
+                                hitSound = Vars.tree.loadSound("ding");
+                                hitSize=300f;
+                            }}
 
-                终焉 = new LaserTurret("终焉"){{
+                    );
+
+                }};
+                终焉 = new LaserTurret("终焉"){
+                    class LaserTurretBuilds extends LaserTurretBuild{
+                        @Override
+                        public void draw(){
+                            Draw.z(Layer.flyingUnit);
+                            super.draw();
+                            Draw.reset();
+                        }
+                    }
+
+                    {
+                      //  buildType=LaserTurretBuilds::new;
                     requirements(Category.turret, with(
                             copper, 12000,
                             lead, 15000,
@@ -954,8 +1011,10 @@ public class FantasyProjectTurrets {
                     loopSoundVolume = 2f;
                     // envEnabled |= Env.space;
                     rotateSpeed = 0.3f;//转速
-
+                    health = 28000;
+                    shootY=-1;
                     shootType = new CT3LaserBulletType(72000/12f){{
+                       // shootY=-1;
                         length = 150 * 8;
                         hitEffect = Fx.hitMeltdown;
                         hitColor = Pal.meltdownHit;
@@ -979,6 +1038,87 @@ public class FantasyProjectTurrets {
                     consumePower(50000/60f);
                     consumeLiquid(啸冷剂,30/60f).update(true);
                     unitSort = UnitSorts.farthest;//最远//攻击单位时的优先选择/closest/farthest/strongest/weakest
+                    drawer = new FantasyProjectTurretDrawer() {
+                        {
+                            parts.addAll(
+                                    new RegionPart("-散热3") {{
+                                        progress = PartProgress.warmup;
+                                        mirror = true;//镜像
+                                        layerOffset = 0.009f;//图层偏移
+                                        // under = true;//在主体下面
+                                        moveRot = 0;//倾斜角度
+                                        moveY = -3;//上下
+                                        moveX = 3f;//左右
+                                    }},
+                                    new RegionPart("-散热2") {{
+                                        progress = PartProgress.warmup;
+                                        mirror = true;//镜像
+                                        layerOffset = 0.008f;//图层偏移
+                                        // under = true;//在主体下面
+                                        moveRot = 0;//倾斜角度
+                                        moveY = -6;//上下
+                                        moveX = 6f;//左右
+                                        //  moves.add(new PartMove(PartProgress.recoil, 0.5f, -0.5f, -8f));
+                                    }},
+                                    new RegionPart("-散热1") {{
+                                        progress = PartProgress.warmup;
+                                        mirror = true;//镜像
+                                        layerOffset = 0.007f;//图层偏移
+                                        //  under = true;//在主体下面
+                                        moveRot = 0;//倾斜角度
+                                        moveY = -9;//上下
+                                        moveX = 9f;//左右
+                                        // moves.add(new PartMove(PartProgress.recoil, 0.5f, -0.5f, -8f));
+                                    }},
+                                    new RegionPart("-仓板") {{
+                                        progress = PartProgress.warmup;
+                                        mirror = true;//镜像
+                                        layerOffset = 0.007f;//图层偏移
+                                        //  under = true;//在主体下面
+                                        moveRot = 0;//倾斜角度
+                                        moveY = 1;//上下
+                                        moveX = 9f;//左右
+                                        // moves.add(new PartMove(PartProgress.recoil, 0.5f, -0.5f, -8f));
+                                    }},
+
+                                    new RegionPart("-主体") {{
+                                        progress = PartProgress.warmup;
+                                        // moveY = 120;//上下
+                                        layerOffset = 0.10f;//图层偏移
+
+                                    }},
+                                    new RegionPart("-伸缩1") {{
+                                        progress = PartProgress.warmup;
+                                        moveY = 30;//上下
+                                        layerOffset = 0.09f;//图层偏移
+
+                                    }},
+                                    new RegionPart("-伸缩2") {{
+                                        progress = PartProgress.warmup;
+                                        moveY = 60;//上下
+                                        layerOffset = 0.08f;//图层偏移
+
+                                    }},
+                                    new RegionPart("-伸缩3") {{
+                                        progress = PartProgress.warmup;
+                                        moveY = 110;//上下
+                                        layerOffset = 0.07f;//图层偏移
+
+                                    }}
+
+                            );
+
+                            requirements(Category.turret, with());
+                            ammo(
+                                    Items.copper, new BasicBulletType(2.5f, 18) {{
+                                        width = 10f;
+                                        height = 13f;
+                                        lifetime = 60f;
+                                        ammoMultiplier = 2;
+                                    }});
+
+                        }
+                    };
                 }};
                 尘埃 = new ItemTurret("尘埃") {
                     {
@@ -1004,7 +1144,7 @@ public class FantasyProjectTurrets {
                         reload = 30 * 60;//射速
 
                         size = 12;
-                        health = 15000;
+                        health = 45000;
                         range = 150 * 8;
                         maxAmmo = 100;
                         //heatColor= 66B1FFFF;

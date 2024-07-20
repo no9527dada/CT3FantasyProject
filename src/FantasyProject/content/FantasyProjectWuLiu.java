@@ -1,8 +1,8 @@
 package FantasyProject.content;
 
 
-import ct.Asystem.type.LaserMassDriver;
-import ct.Asystem.type.LinksSt0rageBlock;
+import CtCoreSystem.CoreSystem.type.LaserMassDriver;
+import CtCoreSystem.CoreSystem.type.LinksSt0rageBlock;
 import mindustry.content.Items;
 import mindustry.entities.bullet.MassDriverBolt;
 import mindustry.type.Category;
@@ -18,8 +18,8 @@ import mindustry.world.meta.BuildVisibility;
 import mindustry.world.meta.Env;
 
 import static FantasyProject.content.FantasyProjectItems.*;
-import static ct.Asystem.type.CTTechTree.addToTree;
-import static ct.content.ItemX.物品;
+import static CtCoreSystem.CoreSystem.type.CTTechTree.addToTree;
+import static CtCoreSystem.content.ItemX.物品;
 import static mindustry.content.Blocks.*;
 import static mindustry.content.Items.*;
 import static mindustry.type.Category.*;
@@ -30,7 +30,7 @@ import static mindustry.type.ItemStack.with;
 public class FantasyProjectWuLiu {
     public static Block
             钴制导管, 硬速导管, 钴导管桥, 钍导管桥, 钍传送带桥, 动能卸货器, 钴传送带桥, 镍板连接器, 大型储液罐, 数据驱动器, 驱动器, 质量驱逐器, 大型仓库, 超大型仓库,
-            质量转换终端, 战地仓库, 装甲啸动传送带, 镍板传送带, 啸动传送带, 装甲镍板传送带, 钴传送带, 装甲钴传送带, 钻石传送带,
+            质量转换终端, 战地仓库, 装甲啸动传送带, 镍板传送带, 啸动传送带, 装甲镍板传送带, 钴传送带, 装甲钴传送带, 钻石传送带,钻石送带桥,
             连锁仓库,
     物流仓储;
 
@@ -343,7 +343,6 @@ public class FantasyProjectWuLiu {
             // bufferCapacity = 14;
         }};
 
-
         钴传送带桥 = new BufferedItemBridge("钴传送带桥") {
             {
                 //localizedName = "钴传送带桥";
@@ -363,9 +362,45 @@ public class FantasyProjectWuLiu {
                 health = 210;
                 group = BlockGroup.transportation;
                 buildType = Build::new;
+              /*  consumePower(6);
+                hasPower = true;*/
             }
 
             class Build extends BufferedItemBridgeBuild {
+                public void doDump(){
+                    //allow dumping multiple times per frame
+                    dumpAccumulate();
+                    dump();
+                }
+                public boolean timer(int index, float time) {
+                    return super.timer(index, time / 13f);
+                }
+            }
+        };
+       钻石送带桥 = new BufferedItemBridge("钻石送带桥") {
+            {
+                requirements(Category.distribution, with(
+                        Items.plastanium, 30,
+                        钛合金, 140,
+                        石英, 430,
+                        钻石,180,
+                        镍板,320
+                ));
+                arrowPeriod = 0.9f;
+                arrowTimeScl = 2.75f;
+                itemCapacity = 20;
+                fadeIn = moveArrows = false;
+                range = 50;
+                speed = 0;
+                transportTime = 0.001f;
+                health = 210;
+               //hasPower = true;
+                group = BlockGroup.transportation;
+                buildType = Build::new;
+               // consumePower(6);
+            }
+
+        class Build extends BufferedItemBridgeBuild {
                 public boolean timer(int index, float time) {
                     return super.timer(index, time / 1000f);
                 }
@@ -385,7 +420,7 @@ public class FantasyProjectWuLiu {
                 buildType = Build::new;
             }
 
-            float limit = 30f / 100;
+            final float limit = 30f / 100;
 
             class Build extends UnloaderBuild {
                 int counter = 0;

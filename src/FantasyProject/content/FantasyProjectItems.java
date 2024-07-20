@@ -6,7 +6,7 @@ import mindustry.type.Item;
 import mindustry.type.Liquid;
 import mindustry.world.blocks.environment.OreBlock;
 
-import static ct.content.ItemX.物品;
+import static CtCoreSystem.content.ItemX.物品;
 import static mindustry.content.Items.*;
 
 //方块

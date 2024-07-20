@@ -5,12 +5,15 @@ import arc.graphics.Color;
 import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
 import arc.util.Tmp;
-import ct.Asystem.type.CTDrawFlame;
+import CtCoreSystem.CoreSystem.type.CTDrawFlame;
+import CtCoreSystem.CoreSystem.type.Ovulam5480.JumpQi;
+import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
 import mindustry.entities.Effect;
 import mindustry.graphics.Pal;
+import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
@@ -23,14 +26,15 @@ import static FantasyProject.content.FantasyProjectItems.*;
 import static arc.graphics.g2d.Draw.color;
 import static arc.graphics.g2d.Lines.stroke;
 import static arc.math.Angles.randLenVectors;
-import static ct.Asystem.CT3Sound.loadSound;
-import static ct.Asystem.type.CTColor.C;
+import static CtCoreSystem.CoreSystem.CT3Sound.loadSound;
+import static CtCoreSystem.CoreSystem.type.CTColor.C;
 import static mindustry.content.Fx.*;
 import static mindustry.content.Fx.fire;
 import static mindustry.content.Fx.none;
 import static mindustry.content.Items.*;
 import static mindustry.gen.Sounds.*;
 import static mindustry.type.Category.crafting;
+import static mindustry.type.Category.effect;
 import static mindustry.type.ItemStack.with;
 import static mindustry.world.meta.BlockGroup.liquids;
 import static mindustry.world.meta.BlockGroup.transportation;
@@ -46,7 +50,7 @@ public class FantasyProjectGenericCrafter {
             军火库, 水晶复合器, 啸动冲击械, 粒子离心机, 资源产生器, 钛合金反应炉, 镍板混合器, 碳板压缩机, 硫粉发生机, 镍板合成机,
             军火材料机, 啸动冶炼机, 固体放射机, 制冷液混合机, 冷冻液发生机, 辐射混合机, 矿物离心机, 放射混合器,
             物品厂_水瓶, 相织反应炉, 钻石提炼机, 钻石矿加工厂, 铁锻造机, 链式锻造机, 铁板锻造机, 铁板重型加工厂, 黄金熔炼器, 混合熔炼器,
-            钻石离心机,  钻石混合物反应机, 液电池制造厂, 多重编织机, 合金锤炼厂, 多重冶炼厂, 多重窑炉,
+            钻石离心机,  钻石混合物反应机, 液电池制造厂, 多重编织机, 合金锤炼厂, 多重冶炼厂, 多重窑炉,煤炭离心机,
             多重塑钢机, 爆炸冲击机, 空壳制造机, 弹药厂_冷冻, 弹药厂_碎裂, 弹药厂_爆破, 弹药厂_硬直, 大型粉碎机, 石英提取机, 石英磨练机,
             工厂;
 
@@ -56,6 +60,7 @@ public class FantasyProjectGenericCrafter {
             requirements(crafting, with());
             buildVisibility=BuildVisibility.shown;
         }};*/
+
         石英提取机 = new GenericCrafter("石英提取机") {{
 
             //localizedName = "石英提取机";
@@ -157,16 +162,16 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "链式锻造机";
             
             consumeItems(with(
-                    copper, 2,
-                    lead, 3
+                    copper, 4,
+                    lead, 4
             ));
             //consumeLiquid(Liquids.oil, 15/60f);
             consumePower(150 / 60f);
-            outputItem = new ItemStack(铁, 5);
+            outputItem = new ItemStack(铁, 6);
             health = 280;
             itemCapacity = 10;
             size = 3;
-            craftTime = 140;
+            craftTime = 3.3f*60f;
             group = transportation;
             craftEffect = Fx.fireballsmoke;
             updateEffect = Fx.mine;
@@ -195,7 +200,7 @@ public class FantasyProjectGenericCrafter {
             consumePower(560 / 60f);
             outputItem = new ItemStack(铁板, 1);
             health = 280;
-            itemCapacity = 10;
+            itemCapacity = 20;
             size = 3;
             craftTime = 600;
             craftEffect = Fx.fireballsmoke;
@@ -207,10 +212,11 @@ public class FantasyProjectGenericCrafter {
             requirements(crafting, with(
                     石英, 200,
                     copper, 220,
-                    石英, 200,
-                    钴, 80,
+                    合金, 200,
+                     金,50,
                     铁, 80,
-                    镍, 150
+                    碳板,20
+
             ));
             drawer = new DrawMulti(new DrawDefault(), new CTDrawFlame());
         }};
@@ -305,7 +311,17 @@ public class FantasyProjectGenericCrafter {
             drawer = new DrawMulti(new DrawDefault());
         }};
 
-
+        煤炭离心机=new GenericCrafter("煤炭离心机"){{
+            requirements(Category.crafting, with(Items.titanium, 20, 石英, 60, Items.lead, 30,铁,50,金,40));
+            craftEffect = Fx.coalSmeltsmoke;
+            outputItem = new ItemStack(Items.coal, 10);
+            craftTime = 120f;
+            size = 3;            itemCapacity = 20;
+            hasPower = hasItems = hasLiquids = true;
+            rotateDraw = false;
+            consumeLiquid(Liquids.oil, 9/60f);
+            consumePower(3.5f);
+        }};
         大型粉碎机 = new GenericCrafter("大型粉碎机") {{
             //localizedName = "大型粉碎机";
             
@@ -1061,7 +1077,7 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "物品厂-水瓶";
             
             consumeItems(with(
-                    空壳, 1, 玻璃, 3
+                    空壳, 1
             ));
             consumeLiquid(Liquids.water, 3 / 60f);
             consumePower(110 / 60f);
@@ -1069,7 +1085,7 @@ public class FantasyProjectGenericCrafter {
             health = 240;
             itemCapacity = 10;
             size = 2;
-            craftTime = 50;
+            craftTime = 60;
             group = transportation;
             //craftEffect = Fx.hitLancer;
             ambientSoundVolume = 0.2f;
@@ -1110,8 +1126,6 @@ public class FantasyProjectGenericCrafter {
                     铁, 110,
                     钴, 220,
                     镍板, 45
-
-
             ));
             drawer = new DrawMulti(new DrawDefault());
         }};

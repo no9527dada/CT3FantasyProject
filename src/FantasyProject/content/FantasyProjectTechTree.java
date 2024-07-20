@@ -3,22 +3,19 @@ package FantasyProject.content;
 import arc.Core;
 import arc.struct.Seq;
 import mindustry.game.Objectives;
+import mindustry.type.ItemStack;
 
 import static FantasyProject.content.FantasyProjectDefense.*;
 import static FantasyProject.content.FantasyProjectDrill.*;
 import static FantasyProject.content.FantasyProjectGenericCrafter.*;
-import static FantasyProject.content.FantasyProjectItems.钴;
-import static FantasyProject.content.FantasyProjectItems.镍;
+import static FantasyProject.content.FantasyProjectItems.*;
 import static FantasyProject.content.FantasyProjectMaps.*;
-
 import static FantasyProject.content.FantasyProjectPlanet.FantasyPlanet;
 import static FantasyProject.content.FantasyProjectPower.*;
 import static FantasyProject.content.FantasyProjectTurrets.*;
 import static FantasyProject.content.FantasyProjectUnits.*;
 import static FantasyProject.content.FantasyProjectWuLiu.*;
-import static ct.Asystem.type.CTTechTree.addToTree;
-
-
+import static FantasyProject.content.FantasyProjectUnitsSuu.*;
 import static mindustry.content.Blocks.*;
 import static mindustry.content.Items.plastanium;
 import static mindustry.content.TechTree.node;
@@ -50,6 +47,8 @@ public class FantasyProjectTechTree {
                             });
                             node(碳板压缩机, Seq.with(new Objectives.Research(multiPress)), () -> {
                             });
+                            node(煤炭离心机, Seq.with(new Objectives.Research(coalCentrifuge)), () -> {
+                            });
                         });
 
                     });
@@ -68,7 +67,7 @@ public class FantasyProjectTechTree {
                         });
                     });
                     node(合金锤炼厂, Seq.with(new Objectives.Research(surgeSmelter)), () -> {
-                        node(钻石提炼机, () -> {
+                        node(钻石离心机, () -> {
                             node(钻石矿加工厂, () -> {
                             });
                         });
@@ -151,6 +150,8 @@ public class FantasyProjectTechTree {
 
 
             node(大型维修点, Seq.with(new Objectives.Research(repairPoint)), () -> {
+                   node(跳波器, () -> {
+                });
                 node(增幅修复仪, () -> {
                     node(聚能修复仪, () -> {
                     });
@@ -237,6 +238,8 @@ public class FantasyProjectTechTree {
                 });
                 node(钍传送带桥, Seq.with(new Objectives.Research(conveyor)), () -> {
                     node(钴传送带桥, () -> {
+                        node(钻石送带桥, () -> {
+                        });
                     });
                 });
                 node(钍导管桥, Seq.with(new Objectives.Research(phaseConduit)), () -> {
@@ -248,7 +251,10 @@ public class FantasyProjectTechTree {
             //单位
             node(魂灵, () -> {
                 node(魂灵运输机工厂, () -> {
+                    node(魂灵2, () -> {
+                    });
                 });
+
                 node(独影矿机工厂, () -> {
                     node(幻型建造机工厂, () -> {
                         node(巨像修复机工厂, () -> {
@@ -263,7 +269,20 @@ public class FantasyProjectTechTree {
                         });
                     });
                 });
+                node(雷霆战机模拟器, () -> {
+                    node(天穹,  ItemStack.with(金,20000),() -> {
+                        node(飞鹰, ItemStack.with(铁板,20000),() -> {
+                            node(秃鹫, ItemStack.with(镍板,20000),() -> {
+                                node(战鹰, ItemStack.with(钻石,20000),() -> {
+                                    node(天泽, ItemStack.with(钛合金,20000),() -> {
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
             });
+            //炮塔
             node(真双管炮, Seq.with(new Objectives.Research(duo)), () -> {
                 node(散射炮, Seq.with(new Objectives.Research(scatter)), () -> {
                 });
@@ -294,6 +313,8 @@ public class FantasyProjectTechTree {
                     });
                 });
                 node(起源, () -> {
+                    node(排山, () -> {
+                    });
                     node(终焉, () -> {
                         node(尘埃, () -> {
                         });
