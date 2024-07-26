@@ -8,6 +8,7 @@ import mindustry.entities.bullet.MassDriverBolt;
 import mindustry.type.Category;
 import mindustry.world.Block;
 import mindustry.world.blocks.distribution.*;
+import mindustry.world.blocks.liquid.ArmoredConduit;
 import mindustry.world.blocks.liquid.Conduit;
 import mindustry.world.blocks.liquid.LiquidBridge;
 import mindustry.world.blocks.liquid.LiquidRouter;
@@ -40,10 +41,10 @@ public class FantasyProjectWuLiu {
         大型仓库 = new StorageBlock("大型仓库") {{
             //localizedName = "大型仓库";
             requirements(effect, with(
-                    titanium, 750,
-                    石英, 550,
-                    thorium, 450,
-                    铁, 200,
+                    titanium, 200,
+                    石英, 130,
+                    thorium, 150,
+                    铁, 70,
                     金, 100
             ));
             health = 1000;
@@ -56,14 +57,10 @@ public class FantasyProjectWuLiu {
         超大型仓库 = new StorageBlock("超大型仓库") {{
             //localizedName = "超大型仓库";
             requirements(effect, with(
-                    titanium, 950,
-                    thorium, 650,
-                    铁, 300,
                     石英, 750,
-                    钴, 450,
-                    石英, 750,
+                    钴, 200,
                     金, 250,
-                    镍板, 100
+                    铁板, 50
             ));
             health = 1500;
             itemCapacity = 15000;
@@ -81,7 +78,7 @@ public class FantasyProjectWuLiu {
                     石英, 1000,
                     thorium, 800,
                     铁, 500,
-                    钻石, 300,
+                    钻石, 200,
                     镍板, 300
             ));
             health = 3000;
@@ -93,9 +90,9 @@ public class FantasyProjectWuLiu {
         连锁仓库=new LinksSt0rageBlock("连锁仓库") {{
             requirements(Category.effect, with(
                     thorium, 800,
-                    相织硅, 150,
+                    相织硅, 50,
                     铁板, 30));
-            itemCapacity = 100;
+            itemCapacity = 1000;
             size = 3;
             group = BlockGroup.transportation;
         }};
@@ -104,8 +101,8 @@ public class FantasyProjectWuLiu {
         镍板连接器 = new Junction("镍板连接器") {{
             //localizedName = "镍板连接器";
             requirements(Category.distribution, with(
-                    镍板, 40,
-                    钴, 20
+                    镍板, 10,
+                    钴, 10
 
             ));
             alwaysUnlocked=true;//必须自动解锁，不然科技树那里就麻烦了
@@ -129,7 +126,7 @@ public class FantasyProjectWuLiu {
                         铁, 1,
                         金, 1
                 ));
-                health = 400;
+                health = 280;
                 speed = 0.2f;
                 buildCostMultiplier = 2f;
                 researchCost = with(plastanium, 100,
@@ -159,7 +156,7 @@ public class FantasyProjectWuLiu {
                         金, 2
 
                 ));
-                health = 130;
+                health = 280;
                 speed = 0.2f;
                 buildCostMultiplier = 2f;
                 researchCost = with(plastanium, 200,
@@ -187,7 +184,7 @@ public class FantasyProjectWuLiu {
                         固体放射物, 1
 
                 ));
-                health = 130;
+                health = 350;
                 speed = 0.5f;
                 buildCostMultiplier = 2f;
                 researchCost = with(镍板, 100,
@@ -214,7 +211,7 @@ public class FantasyProjectWuLiu {
                         金, 3
 
                 ));
-                health = 180;
+                health = 350;
                 speed = 0.5f;
                 buildCostMultiplier = 2f;
                 researchCost = with(
@@ -238,10 +235,9 @@ public class FantasyProjectWuLiu {
             {
                 //localizedName = "啸动传送带";
                 requirements(distribution, with(
-                        钛合金, 10,
-                        surgeAlloy, 10,
-                        铁板, 10,
-                        镍板, 10
+                        钛合金, 5,
+                        surgeAlloy, 5,
+                        镍板, 5
 
                 ));
                 buildCostMultiplier = 15;
@@ -269,9 +265,10 @@ public class FantasyProjectWuLiu {
             {
                 //localizedName = " 装甲啸动传送带";
                 requirements(distribution, with(
-                        钴, 20,
-                        钛合金, 10,
-                        钻石, 10
+                        钛合金, 5,
+                        钴, 5,
+                        钛合金, 5,
+                        镍板, 5
 
 
                 ));
@@ -302,9 +299,7 @@ public class FantasyProjectWuLiu {
             requirements(distribution, with(
                     钴, 20,
                     钛合金, 10,
-                    surgeAlloy, 10,
-                    铁板, 10,
-                    镍板, 10
+                    钻石, 10
             ));
             health = 330;
             speed = 8f / 60f;
@@ -319,7 +314,7 @@ public class FantasyProjectWuLiu {
             baseEfficiency = 1f;
             consumePower(10f / 60f);
             group = BlockGroup.transportation;
-            researchCost = with(surgeAlloy, 30, tungsten, 80);
+           // researchCost = with(surgeAlloy, 30, tungsten, 80);
         }};
 
 
@@ -382,15 +377,15 @@ public class FantasyProjectWuLiu {
                 requirements(Category.distribution, with(
                         Items.plastanium, 30,
                         钛合金, 140,
-                        石英, 430,
-                        钻石,180,
-                        镍板,320
+                        石英, 220,
+                        钻石,60,
+                        镍板,50
                 ));
                 arrowPeriod = 0.9f;
                 arrowTimeScl = 2.75f;
                 itemCapacity = 20;
                 fadeIn = moveArrows = false;
-                range = 50;
+                range = 100;
                 speed = 0;
                 transportTime = 0.001f;
                 health = 210;
@@ -415,24 +410,20 @@ public class FantasyProjectWuLiu {
                         金, 125,
                         钻石混合物, 30,
                         Items.titanium, 125, Items.silicon, 130));
-                speed = 200f / 60f;
+                speed = 100f;
+                size=1;
                 group = BlockGroup.transportation;
-                buildType = Build::new;
+                buildType = BuildUnloader::new;
             }
 
-            final float limit = 30f / 100;
-
-            class Build extends UnloaderBuild {
-                int counter = 0;
-
+            final float limit = 30f / speed;
+            class BuildUnloader extends UnloaderBuild {
+                float counter = 0;
                 public void updateTile() {
                     counter += this.edelta();
-
                     while (counter >= limit) {
                         this.unloadTimer = speed;
-
                         super.updateTile();
-
                         counter -= limit;
                     }
                 }
@@ -513,9 +504,9 @@ public class FantasyProjectWuLiu {
                 requirements(distribution, with(
                         silicon, 450,
                         titanium, 370,
-                        啸动合金, 150,
+                        啸动合金, 30,
                         镍板, 270,
-                        相织硅, 350
+                        相织硅, 200
                 ));
                 size = 4;
                 itemCapacity = 750;
@@ -560,6 +551,7 @@ public class FantasyProjectWuLiu {
                 ));
                 liquidCapacity = 30;
                 health = 240;
+                liquidPressure = 10f;
 
             }
 
@@ -573,17 +565,18 @@ public class FantasyProjectWuLiu {
         };
 
 
-        硬速导管 = new Conduit("硬速导管") {
+        硬速导管 = new ArmoredConduit("硬速导管") {
             {
                 //localizedName = "硬速导管";
                 requirements(liquid, with(
-                        plastanium, 5,
-                        metaglass, 5,
-                        钴, 10,
-                        铁, 3
+                        plastanium, 2,
+                        metaglass, 2,
+                        钴, 2,
+                        铁, 2
                 ));
                 liquidCapacity = 30;
                 health = 240;
+                liquidPressure = 10f;
 
             }
 
@@ -602,7 +595,7 @@ public class FantasyProjectWuLiu {
             requirements(liquid, with(
 
                     lead, 20,
-                    metaglass, 30,
+                    metaglass, 20,
                     thorium, 15
             ));
             liquidCapacity = 20;

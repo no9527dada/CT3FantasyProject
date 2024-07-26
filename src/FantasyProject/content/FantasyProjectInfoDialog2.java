@@ -7,7 +7,7 @@ import arc.util.Time;
 import mindustry.Vars;
 import mindustry.ui.dialogs.BaseDialog;
 
-public class FantasyProjectInfoDialog {
+public class FantasyProjectInfoDialog2 {
 
 
 
@@ -37,7 +37,7 @@ public class FantasyProjectInfoDialog {
                     }).size(140f, 50f).center();
 
                     cont.pane((i -> {
-                        i.add(Core.bundle.format("ct3fpZHUYI")).left().growX().wrap().width(620).maxWidth(620).pad(4).labelAlign(Align.left).row();
+                        i.add(Core.bundle.format("ct3fpZHUYI2")).left().growX().wrap().width(620).maxWidth(620).pad(4).labelAlign(Align.left).row();
                         i.image().color(Color.valueOf("69dcee")).fillX().height(3).pad(3).row();
                         i.button("GitHub", (() -> {
                             if (!Core.app.openURI(Git)) {

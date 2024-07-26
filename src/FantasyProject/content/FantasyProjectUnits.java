@@ -11,10 +11,12 @@ import mindustry.type.Category;
 import mindustry.type.UnitType;
 import mindustry.world.Block;
 import mindustry.world.Tile;
+import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.storage.CoreBlock;
 
 import static FantasyProject.content.FantasyProjectItems.*;
 import static FantasyProject.content.FantasyProjectUnitsSuu.*;
+import static mindustry.Vars.state;
 import static mindustry.content.UnitTypes.*;
 import static mindustry.type.ItemStack.with;
 
@@ -23,7 +25,7 @@ public class FantasyProjectUnits {
     public static UnitType 魂灵2,魂灵;
     public static Block
             独影矿机工厂,幻型建造机工厂,巨像修复机工厂, T1单位工厂,T2单位工厂 ,T3单位工厂,T4单位工厂,魂灵运输机工厂,
-            雷霆战机模拟器,fff;
+            雷霆战机模拟器;
 
     public static void load() {
         魂灵= new UnitType("魂灵"){{
@@ -173,8 +175,8 @@ public class FantasyProjectUnits {
                     new UnitPlan(eclipse, 60f * 90*7f, with( 合金,120,相织硅,140,金, 150)),//日蚀
                     new UnitPlan(reign, 60f * 90*7.5f, with( 合金,120,钛合金,160,铁板, 200)),//王座
                     new UnitPlan(toxopid, 60f * 90*7f, with( 合金,120,相织硅,220,钛合金, 170)),//天蝎
-                    new UnitPlan(corvus, 60f * 90*8f, with(合金,120,镍板,200, 液电池, 7)),//死星
-                    new UnitPlan(oct, 60f * 90*7.3f, with(合金,120,钻石,150,镍, 7))//oct
+                    new UnitPlan(corvus, 60f * 90*8f, with(合金,120,镍板,200, 液电池, 220)),//死星
+                    new UnitPlan(oct, 60f * 90*7.3f, with(合金,120,钻石,150,镍, 300))//oct
 
             );
             size = 5;
@@ -199,7 +201,13 @@ public class FantasyProjectUnits {
             consumePower(1000 / 60f);
             floating = true;
             buildCostMultiplier = 0;
+            buildType = Build::new;
+            solid= targetable = false;//被单位攻击？
         }
+            class Build extends CreatorsUnitFactoryBuild {
+                @Override
+                public void damage(float damage) {}
+            }
             //  数字代表允许建筑的数量，最多是数字的值+1
             public int 数量 = 1;
 
@@ -234,6 +242,11 @@ public class FantasyProjectUnits {
                 } else if (Vars.state.teams.get(Vars.player.team()).getBuildings(this).size > 数量 - 1)
                     drawPlaceText(Core.bundle.get("QuantityLimit.限制最大数量") + 数量, x, y, valid);
                 super.drawPlace(x, y, rotation, valid);
+            }
+            //生存模式不可拆
+            @Override
+            public boolean canBreak(Tile tile) {
+                return state.rules.editor || Vars.state.rules.infiniteResources || state.playtestingMap != null;
             }
         };
     }

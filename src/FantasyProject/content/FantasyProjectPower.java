@@ -1,5 +1,6 @@
 package FantasyProject.content;
 
+import CtCoreSystem.CoreSystem.type.PowerNetTower;
 import arc.graphics.Color;
 import mindustry.content.Fx;
 import mindustry.content.Liquids;
@@ -50,22 +51,17 @@ public class FantasyProjectPower {
         }};
 
 
-        充能节点 = new PowerNode("充能节点") {{
+        充能节点 = new PowerNetTower("充能节点") {{
             //localizedName = "水晶能量节点";
             requirements(power, with(
                     metaglass, 800,
                     silicon, 500,
                     黎辉水晶, 50
             ));
-            consumePowerBuffered(2000000);
-            laserRange = 300;
-            maxNodes = 5000;
+            consumePowerBuffered(5000);
+            range = 300;
             health = 500;
             size = 3;
-            laserScale = 0.25f;
-            laserColor1 = Color.white;
-            laserColor2 = Color.valueOf("b17bff");
-
         }};
 
 
@@ -108,7 +104,7 @@ public class FantasyProjectPower {
             ambientSound = Sounds.smelter;
             ambientSoundVolume = 0.03f;
             generateEffect = Fx.generatespark;
-            health = 170;
+            health = 170;liquidCapacity=30;
             consume(new ConsumeItemFlammable());
             consume(new ConsumeItemExplode());
             consumeLiquid(Liquids.water, 6 / 60f).update(false);
@@ -131,13 +127,15 @@ public class FantasyProjectPower {
             powerProduction = 4500 / 60f;
             itemDuration = 240;
             itemCapacity = 3;
+            liquidCapacity=50;
             ambientSound = Sounds.smelter;
             ambientSoundVolume = 0.03f;
             generateEffect = Fx.generatespark;
             health = 170;
             consume(new ConsumeItemFlammable());
             consume(new ConsumeItemExplode());
-            consumeLiquid(Liquids.water, 12 / 60f).update(false);
+            consumeLiquid(Liquids.water, 12 / 60f);
+           // consumeLiquid(Liquids.water, 12 / 60f).update(false);
             drawer = new DrawMulti(
                     new DrawRegion("-bottom"),//黑底
                     new DrawLiquidTile(Liquids.water),
@@ -155,12 +153,11 @@ public class FantasyProjectPower {
             requirements(power, with(
                     lead, 250,
                     silicon, 125,
-                    石英, 750,
                     石英, 300,
                     金, 55,
-                    钻石, 10
+                    合金, 80
             ));
-            consumePowerBuffered(100000);
+            consumePowerBuffered(1000000);
             health = 500;
             size = 4;
             buildCostMultiplier = 0.4f;
@@ -177,7 +174,7 @@ public class FantasyProjectPower {
                     黎辉水晶, 50,
                     钻石, 300
             ));
-            consumePowerBuffered(5000000);
+            consumePowerBuffered(100000000);
             health = 1200;
             size = 3;
             buildCostMultiplier = 0.4f;
@@ -325,9 +322,8 @@ public class FantasyProjectPower {
             requirements(power, with(
                     石英, 20,
                     lead, 20,
-                    graphite, 20,
-                    silicon, 10,
-                    铁, 5
+                    空壳, 15,
+                    silicon, 10
             ));
             health = 250;
             attribute = Attribute.water;
@@ -344,13 +340,11 @@ public class FantasyProjectPower {
         地水触及机 = new ThermalGenerator("地水触及机") {{
             //localizedName = "地水触及机";
             requirements(power, with(
-                    石英, 20,
-                    lead, 20,
-                    graphite, 20,
-                    silicon, 10,
-                    铁, 5,
-                    空壳, 350,
-                    钴, 50
+                    石英, 70,
+                    silicon, 45,
+                    铁板, 15,
+                    空壳, 50,
+                    合金, 80
             ));
             health = 320;
             attribute = Attribute.water;
@@ -366,15 +360,14 @@ public class FantasyProjectPower {
         地引发电机 = new ThermalGenerator("地引发电机") {{
             //localizedName = "地引发电机";
             requirements(power, with(
-                    镍板, 10,
+                    镍板, 20,
                     lead, 150,
                     graphite, 125,
                     silicon, 80,
                     铁, 70,
-                    空壳, 80,
                     碳板, 20
             ));
-            health = 350;
+            health = 870;
             attribute = Attribute.heat;
             powerProduction = 510 / 60f;
             generateEffect = Fx.reactorsmoke;
@@ -395,6 +388,7 @@ public class FantasyProjectPower {
                     钻石, 200,
                     固体放射物, 150
             ));
+            armor=5;
 /*            explosionRadius = 10 * 8;
             explosionDamage = 4500;*/
             itemCapacity = 30;
@@ -402,7 +396,7 @@ public class FantasyProjectPower {
             ambientSound = Sounds.hum;
             ambientSoundVolume = 0.24f;
             size = 3;
-            health = 1400;
+            health = 2300;
             itemDuration = 60f;
             powerProduction = 12000f / 60;
             heating = 0.002f;
@@ -421,29 +415,32 @@ public class FantasyProjectPower {
                     titanium, 900,
                     啸动合金, 80
             ));
-            health = 1200; //
+            health = 4500; //
+            armor=10;
             size = 3;
             buildCostMultiplier = 3;
-            // itemCapacity = 10;
-            liquidCapacity = 300;
+             itemCapacity = 25;
+            liquidCapacity = 400;
             // itemDuration = 240;
             warmupSpeed = 0.0008f;
             powerProduction = 77000 / 60f;//4.2W发电量
             explosionRadius = 50 * 8; //爆炸半径 除以8
             explosionDamage = 14000; //爆炸伤害
             hasItems = false;
+            itemDuration = 300f;
             //consumePowerBuffered(130000);
             consumePower(35000 / 60f);
             ambientSound = Sounds.pulse;
             ambientSoundVolume = 0.07f;
-            consumeLiquid(oil, 1);
+            consumeItem(固体放射物, 1);
+            consumeLiquid(oil, 0.5f);
 
         }};
 
 
 
         相对发电机 = new ConsumeGenerator("相对发电机") {{
-            canOverdrive = false;
+          //  canOverdrive = false;
             //localizedName = "相对发电机";
             requirements(power, with(
                     镍板, 750,
@@ -454,8 +451,9 @@ public class FantasyProjectPower {
             ));
             powerProduction = 300000 / 60f;
             hasLiquids = true;
+            health = 7600; //
             hasItems = true;
-            size = 5;
+            size = 5; armor=18;
             ambientSound = Sounds.steam;
             generateEffect = Fx.generatespark;
             ambientSoundVolume = 0.03f;
@@ -468,7 +466,6 @@ public class FantasyProjectPower {
                     }},
                     new DrawDefault(),
                     new DrawWarmupRegion());
-
             consumeItem(黎辉水晶, 1);
             consumeLiquid(啸冷剂, 0.1f);
         }};

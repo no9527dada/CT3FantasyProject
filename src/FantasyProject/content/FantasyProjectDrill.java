@@ -28,9 +28,9 @@ public class FantasyProjectDrill {
         大型机械泵 = new Pump("大型机械泵") {{
             //localizedName = "大型机械泵";
             requirements(liquid, with(
-                    Items.lead, 100,
-                    copper, 100,
-                    metaglass, 45,
+                    Items.lead, 50,
+                    copper, 50,
+                    metaglass, 20,
                     石英, 30
 
             ));
@@ -43,12 +43,12 @@ public class FantasyProjectDrill {
         超大型机械泵 = new Pump("超大型机械泵") {{
             //localizedName = "超大型机械泵";
             requirements(liquid, with(
-                    Items.lead, 150,
-                    copper, 150,
+                    Items.lead, 100,
+                    copper, 100,
                     metaglass, 75,
                     石英, 80,
-                    铁, 80,
-                    金, 45
+                    铁, 20,
+                    金, 30
 
             ));
             pumpAmount = 60f / 60f / 9f;
@@ -60,7 +60,7 @@ public class FantasyProjectDrill {
 
         动能泵 = new Pump("动能泵") {{
             //localizedName = "动能泵";
-            consumePower(9f);
+            consumePower(260/60f);
             requirements(liquid, with(
                     copper, 180,
                     metaglass, 150,
@@ -74,7 +74,7 @@ public class FantasyProjectDrill {
             pumpAmount = 300f / 60f / 16F;
             health = 550;
             size = 4;
-            liquidCapacity = 100;
+            liquidCapacity = 1000;
         }};
 
 
@@ -136,7 +136,7 @@ public class FantasyProjectDrill {
             ));
             attribute = Attribute.water;
             result = Liquids.cryofluid;
-            pumpAmount = 3 / 60F;
+            pumpAmount = 12 / 60F;
             health = 500;
             size = 2;
             liquidCapacity = 30;
@@ -211,11 +211,14 @@ public class FantasyProjectDrill {
         合金钻头 = new Drill("合金钻头") {{
             //localizedName = "合金钻头";
             consumePower(20f);
-            consumeLiquid(Liquids.cryofluid, 0.1f);
+          //  consumeLiquid(Liquids.cryofluid, 0.1f);//必须
+            consumeLiquid(Liquids.cryofluid, 0.1f).boost();//可选
             requirements(production, with(
                     石英, 550,
+                    镍板, 50,
+                    铁, 150,
                     钻石, 225,
-                    啸动合金, 65
+                    啸动合金, 10
             ));
             drillEffect = hitBulletBig;
             hardnessDrillMultiplier = 2.5f;
@@ -224,7 +227,7 @@ public class FantasyProjectDrill {
             rotateSpeed = 10;
             drillTime = 75;
             health = 550;
-            size = 3;
+            size = 4;
             liquidCapacity = 10;
         }};
 

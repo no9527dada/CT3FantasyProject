@@ -9,6 +9,7 @@ import arc.util.Tmp;
 import CtCoreSystem.content.Effect.CT3FxEffect;
 import CtCoreSystem.content.Effect.NewEffect;
 import CtCoreSystem.content.Effect.NewFx;
+import mindustry.Vars;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.entities.Effect;
@@ -60,7 +61,7 @@ public class FantasyProjectBullets {
 
     // collidesAir = collidesGround = true;//对空对地 子弹
     public static class 制裁Bullet extends BasicBulletType {
-        @Override
+     /*   @Override
         public void draw(Bullet b){
             super.draw(b);
             // float shrink = shrinkInterp.apply(b.fout());
@@ -81,7 +82,7 @@ public class FantasyProjectBullets {
             Draw.rect(frontRegion, b.x, b.y, width, height, b.rotation() + offset);
 
             Draw.reset();
-        }
+        }*/
         public 制裁Bullet(float lifetimee, float damagee, float speedd) {
             // super();
             lifetime = lifetimee;
@@ -134,7 +135,11 @@ public class FantasyProjectBullets {
             despawnEffect = NewFx.灭亡子弹消失;
             splashDamage = 0;//范围伤害
             splashDamageRadius = 0;//范围伤害的范围
-            collidesAir = collidesGround = true;//对空对地
+           collidesAir = collidesGround = true;//对空对地
+            pierceBuilding= pierce = true;//双穿
+            // pierceCap = 4;
+            pierceDamageFactor = 0.15f;
+
         }
     }
 
@@ -142,9 +147,10 @@ public class FantasyProjectBullets {
         public 毁灭Bullet(float lifetimee, float damagee, float speedd, float 射速, float 倍率) {
             // super();
             lifetime = lifetimee;
-            damage = 0;
+            damage = damagee/2;
+            absorbable = false;//子弹不被护盾仪吸收
             speed = speedd;
-            sprite = "ct-round";
+            sprite = "ctcoresystem-round";
             width = 24;
             height = 33;
             ammoMultiplier = 倍率;
@@ -164,11 +170,11 @@ public class FantasyProjectBullets {
             trailInterval = 3f;
             trailChance = 0.3f;
             splashDamage = damagee;//范围伤害
-            splashDamageRadius = 8 * 8;//范围伤害的范围
+            splashDamageRadius = 8 * 20;//范围伤害的范围
             collidesAir = collidesGround = true;//对空对地
                        /*子弹消失时的效果，可能和hitEffect有些相似。
             不同的是这个效果只会显示一次，如果是hitEffect可能会在多个目标上显示，比如子弹贯穿多个单位或建筑*/
-            despawnEffect = NewFx.毁灭despawnEffect(); //NewFx.制裁子弹消失;
+           hitEffect= despawnEffect = NewFx.毁灭despawnEffect(); //NewFx.制裁子弹消失;
 
             //蓄力射击开始时产生的效果;仅适用于具有 firstShotDelay / shotDelay 的单发武器。
             chargeEffect = none;
@@ -215,7 +221,7 @@ public class FantasyProjectBullets {
             lifetime = lifetimee;
             damage = damagee;
             speed = speedd;
-            // sprite=   "ct-round";
+            // sprite=   "ctcoresystem-round";
             width = 12;
             height = 15;
             ammoMultiplier = 倍率;
@@ -262,6 +268,7 @@ public class FantasyProjectBullets {
             buildingDamageMultiplier = 0.2f;
             statusDuration = 80;
             ammoMultiplier = 1;
+            hitSound= Vars.tree.loadSound("光棱");
             //蓄力射击开始时产生的效果;仅适用于具有 firstShotDelay / shotDelay 的单发武器。
             hitEffect = chargeEffect = new MultiEffect(Fx.lancerLaserChargeBegin) {
                 {
@@ -300,11 +307,10 @@ public class FantasyProjectBullets {
                     };
                 }
             };
-            hitSound = loadSound("hit光棱");
-            fragBullets = 4;
+            fragBullets = 5;
             fragBullet = new LightningBulletType() {{
-                damage = 20;
-                lightningLength = 40;
+                damage = 50;
+                lightningLength = 80;
                 collidesAir = true;
                 ammoMultiplier = 1f;
                 //for visual stats only.
@@ -334,6 +340,7 @@ public class FantasyProjectBullets {
             buildingDamageMultiplier = 0.2f;
             statusDuration = 80;
             ammoMultiplier = 1;
+            hitSound= Vars.tree.loadSound("光棱");
             //蓄力射击开始时产生的效果;仅适用于具有 firstShotDelay / shotDelay 的单发武器。
             hitEffect = new MultiEffect(Fx.lancerLaserChargeBegin) {
                 {
@@ -373,7 +380,6 @@ public class FantasyProjectBullets {
                     };
                 }
             };
-            hitSound = loadSound("hit光棱2");
             fragBullets = 5;
             fragBullet = new LaserBulletType(800) {{
                 colors = new Color[]{光棱塔Bullet1.cpy().a(0.4f), 光棱塔Bullet1, 光棱塔Bullet2};
@@ -396,6 +402,7 @@ public class FantasyProjectBullets {
                 drawSize = 400f;
                 length = 190f;
                 ammoMultiplier = 1f;
+
                 pierce = true;
                 // pierceCap = 4;
             }};
@@ -516,7 +523,7 @@ public class FantasyProjectBullets {
                 waveRad = 40f;
             }};
            /* intervalBullets = 3;
-            intervalBullet = new BasicBulletType(4,55,"ct-起源2"){{
+            intervalBullet = new BasicBulletType(4,55,"ctcoresystem-起源2"){{
                 lifetime = 70;
                 collidesAir = true;
                 //for visual stats only.
@@ -558,7 +565,7 @@ public class FantasyProjectBullets {
             hitColor = Pal.sapBullet;
             despawnSound = Sounds.spark;
             //pierce = true;
-            sprite = "ct-large-orb";
+            sprite = "ctcoresystem-large-orb";
             trailEffect = Fx.missileTrail;
             trailInterval = 3f;//间隔距离
             trailParam = 4f;//数量
@@ -567,6 +574,7 @@ public class FantasyProjectBullets {
             trailWidth = 13f;
             speed = 2f;
             damage = 0;
+            pierce = true;
             lifetime = 280;
             width = height = 55f;
             backColor = 起源Bullet颜色1;
@@ -585,13 +593,14 @@ public class FantasyProjectBullets {
                 waveRad = 40f;
             }};
             intervalBullets = 3;
-            intervalBullet = new BasicBulletType(4, damagee, "ct-起源2") {{
+            intervalBullet = new BasicBulletType(4, damagee, "ctcoresystem-起源2") {{
                 lifetime = 70;
                 width = height = 9f;
                 collidesAir = true;
                 frontColor = 起源Bullet颜色1;
                 backColor = 起源Bullet颜色2;
                 buildingDamageMultiplier = 0.25f;
+                pierce = true;
                 spin = 8;
                 despawnEffect = hitEffect = NewFx.普通击中despawnEffect(起源Bullet颜色2);
                 trailColor = 起源Bullet颜色2;
@@ -625,7 +634,7 @@ public class FantasyProjectBullets {
             hitColor = 皇后Bullet颜色2;
             despawnSound = Sounds.spark;
             spin = 10;
-            sprite = "ct-皇后1";
+            sprite = "ctcoresystem-皇后1";
             trailEffect = none;
             // trailInterval = 3f;
             // trailParam = 4f;
@@ -663,9 +672,9 @@ public class FantasyProjectBullets {
             hitColor = 帝王Bullet颜色2;
             despawnSound = Sounds.spark;
             spin = 5;
-            sprite = "ct-帝王1";
+            sprite = "ctcoresystem-帝王1";
             trailEffect = new ParticleEffect() {{
-                region = "ct-正四星";
+                region = "ctcoresystem-正四星";
                 colorFrom = 帝王Bullet颜色2;
                 colorTo = 帝王Bullet颜色1;
                 length = 20f;
@@ -708,11 +717,11 @@ public class FantasyProjectBullets {
             fragBullets = 5;
             fragVelocityMin = 1f;//破片力度最小值
             fragVelocityMax = 1f;//破片力度最大值
-            fragBullet = new BasicBulletType(-3, 0, "ct-帝王1") {{
+            fragBullet = new BasicBulletType(3, 0, "ctcoresystem-帝王1") {{
                 width = 8f;
                 height = 13f;
                 trailEffect = new ParticleEffect() {{
-                    region = "ct-正四星";
+                    region = "ctcoresystem-正四星";
                     colorFrom = 帝王Bullet颜色2;
                     colorTo = 帝王Bullet颜色1;
                     //length = 20f;baseLength = 10f;
@@ -765,7 +774,7 @@ public class FantasyProjectBullets {
 
     public static class 空之驱逐Bullet extends BasicBulletType {
         public 空之驱逐Bullet(float damagee, float 倍率, float 速度, float 射速, float 击退) {
-            sprite = "ct-Bullet月牙";
+            sprite = "ctcoresystem-Bullet月牙";
             damage = damagee;
             speed = 速度;
             ammoMultiplier = 倍率;
@@ -790,7 +799,7 @@ public class FantasyProjectBullets {
             }};
 
             trailEffect = new ParticleEffect() {{
-                region = "ct-正四星";
+                region = "ctcoresystem-正四星";
                 colorFrom = 帝王Bullet颜色2;
                 colorTo = 帝王Bullet颜色1;
                 //length = 20f;baseLength = 10f;
@@ -814,7 +823,7 @@ public class FantasyProjectBullets {
     public static class 空中祸害Bullet extends BasicBulletType {
         public 空中祸害Bullet(float damagee, float 倍率, float 速度, float 射速, float 击退) {
             shootEffect = CT3FxEffect.greenBomb2;
-            sprite = "ct-月牙";
+            sprite = "ctcoresystem-月牙";
             damage = damagee;
             speed = 速度;
             ammoMultiplier = 倍率;
@@ -870,7 +879,7 @@ public class FantasyProjectBullets {
                 trailEffect =//NewFx.四角星(1,5,4,1,4);;
                         new ParticleEffect() {{
                             particles = 3;
-                            region = "ct-正四星";
+                            region = "ctcoresystem-正四星";
                             colorFrom = 空中祸害Bullet颜色2;
                             colorTo = 空中祸害Bullet颜色1;
                             //length = 20f;baseLength = 10f;
@@ -1017,7 +1026,7 @@ public class FantasyProjectBullets {
                 hitSound = plasmaboom;
                 intervalBullets = 3;
                 bulletInterval = 6;//每次产生的间隔时间
-                intervalBullet = new BasicBulletType(4, 888, "ct-正四星") {{
+                intervalBullet = new BasicBulletType(4, 888, "ctcoresystem-正四星") {{
                     lifetime = 90;
                     width = height = 27f;
                     collidesAir = true;
@@ -1153,7 +1162,7 @@ public class FantasyProjectBullets {
                                                 length = 0;
                                                 sizeFrom = 75;
                                                 sizeTo = 0;
-                                                region = "ct-菱形3";
+                                                region = "ctcoresystem-菱形3";
                                                 particles = 1;
                                                 interp = Interp.swing;
                                                 lifetime = 200;
@@ -1168,7 +1177,7 @@ public class FantasyProjectBullets {
                                                 length = 0;
                                                 sizeFrom = 100;
                                                 sizeTo = 0;
-                                                region = "ct-菱形2";
+                                                region = "ctcoresystem-菱形2";
                                                 particles = 1;
                                                 interp = Interp.pow3Out;
                                                 lifetime = 200;

@@ -92,7 +92,7 @@ public class FantasyProjectItems {
             flammability = 0.3f;
         }};
         固体放射物 = new Item("固体放射物", Color.valueOf("CD950C")) {{
-            radioactivity = 10F;
+            radioactivity = 4.3F;
             flammability = 0.5f;
         }};
         啸动合金 = new Item("啸动合金", Color.valueOf("FFFF00"));

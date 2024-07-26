@@ -151,6 +151,8 @@ public class FantasyProjectTechTree {
 
             node(大型维修点, Seq.with(new Objectives.Research(repairPoint)), () -> {
                    node(跳波器, () -> {
+                       node(破墙器, () -> {
+                   });
                 });
                 node(增幅修复仪, () -> {
                     node(聚能修复仪, () -> {
@@ -173,6 +175,10 @@ public class FantasyProjectTechTree {
                         });
                         node(钴墙, () -> {
                             node(大型钴墙, () -> {
+                            });
+                            node(高级塑钢墙, () -> {
+                                node(大型高级塑钢墙, () -> {
+                                });
                             });
                             node(钛合金墙, () -> {
                                 node(大型钛合金墙, () -> {

@@ -1,18 +1,14 @@
 package FantasyProject.content;
 
-import arc.Core;
+import CtCoreSystem.CoreSystem.type.CTDrawFlame;
 import arc.graphics.Color;
 import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
 import arc.util.Tmp;
-import CtCoreSystem.CoreSystem.type.CTDrawFlame;
-import CtCoreSystem.CoreSystem.type.Ovulam5480.JumpQi;
-import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
 import mindustry.entities.Effect;
-import mindustry.graphics.Pal;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
@@ -20,21 +16,19 @@ import mindustry.world.Block;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.production.Separator;
 import mindustry.world.draw.*;
-import mindustry.world.meta.BuildVisibility;
 
+import static CtCoreSystem.CoreSystem.CT3Sound.loadSound;
+import static CtCoreSystem.CoreSystem.type.CTColor.C;
 import static FantasyProject.content.FantasyProjectItems.*;
 import static arc.graphics.g2d.Draw.color;
 import static arc.graphics.g2d.Lines.stroke;
 import static arc.math.Angles.randLenVectors;
-import static CtCoreSystem.CoreSystem.CT3Sound.loadSound;
-import static CtCoreSystem.CoreSystem.type.CTColor.C;
-import static mindustry.content.Fx.*;
 import static mindustry.content.Fx.fire;
 import static mindustry.content.Fx.none;
+import static mindustry.content.Fx.*;
 import static mindustry.content.Items.*;
 import static mindustry.gen.Sounds.*;
 import static mindustry.type.Category.crafting;
-import static mindustry.type.Category.effect;
 import static mindustry.type.ItemStack.with;
 import static mindustry.world.meta.BlockGroup.liquids;
 import static mindustry.world.meta.BlockGroup.transportation;
@@ -212,7 +206,6 @@ public class FantasyProjectGenericCrafter {
             requirements(crafting, with(
                     石英, 200,
                     copper, 220,
-                    合金, 200,
                      金,50,
                     铁, 80,
                     碳板,20
@@ -247,6 +240,7 @@ public class FantasyProjectGenericCrafter {
                     copper, 320,
                     石英, 250,
                     钴, 80,
+                    合金, 200,
                     铁板, 30,
                     碳板, 20,
                     镍板, 150
@@ -291,7 +285,7 @@ public class FantasyProjectGenericCrafter {
             consumeItems(with(Items.pyratite, 2, Items.sporePod, 2));
             consumeLiquid(Liquids.water, 0.1f);
             consumePower(50 / 60f);
-            outputItem = new ItemStack(blastCompound, 3);
+            outputItem = new ItemStack(blastCompound, 4);
             health = 110;
             itemCapacity = 10;
             size = 3;
@@ -342,8 +336,9 @@ public class FantasyProjectGenericCrafter {
             requirements(crafting, with(
                     Items.copper, 150,
                     Items.lead, 100,
-                    铁板, 30,
-                    碳板, 20
+                    铁, 30,
+                    金, 20,
+                    钴,20
             ));
             drawer = new DrawMulti(new DrawDefault(), new DrawRegion("-rotator") {{
                 spinSprite = true;
@@ -420,7 +415,7 @@ public class FantasyProjectGenericCrafter {
             health = 220;
             itemCapacity = 10;
             size = 2;
-            craftTime = 60;
+            craftTime = 120;
             group = transportation;
             craftEffect = hitLancer;
             updateEffect = hitLancer;
@@ -443,7 +438,7 @@ public class FantasyProjectGenericCrafter {
             consumeItems(with(空壳, 1,
                     titanium, 1));
             consumeLiquid(Liquids.water, 0.1f);
-            consumePower(1.5f);
+            consumePower(1.2f);
             outputItem = new ItemStack(冷冻弹, 1);
             health = 220;
             itemCapacity = 10;
@@ -472,12 +467,12 @@ public class FantasyProjectGenericCrafter {
             consumeItems(with(空壳, 1,
                     scrap, 1, metaglass, 1));
             //consumeLiquid(Liquids.water, 0.1f);
-            consumePower(1.5f);
+            consumePower(2f);
             outputItem = new ItemStack(碎裂弹, 1);
             health = 220;
             itemCapacity = 10;
             size = 2;
-            craftTime = 60;
+            craftTime = 90;
             group = transportation;
             craftEffect = hitLancer;
             updateEffect = hitLancer;
@@ -501,12 +496,12 @@ public class FantasyProjectGenericCrafter {
             consumeItems(with(空壳, 1,
                     钻石混合物, 1, 钴, 1));
             //consumeLiquid(Liquids.water, 0.1f);
-            consumePower(1.5f);
+            consumePower(220/60f);
             outputItem = new ItemStack(硬直弹, 1);
             health = 220;
             itemCapacity = 10;
             size = 2;
-            craftTime = 60;
+            craftTime = 300;
             group = transportation;
             craftEffect = hitLancer;
             updateEffect = hitLancer;
@@ -567,11 +562,11 @@ public class FantasyProjectGenericCrafter {
             ));
             consumeLiquid(Liquids.water, 12 / 60f);
             consumePower(2.5f);
-            outputItem = new ItemStack(phaseFabric, 3);
+            outputItem = new ItemStack(phaseFabric, 4);
             health = 250;
             itemCapacity = 30;
             size = 3;
-            craftTime = 70;
+            craftTime = 80;
             group = transportation;
             craftEffect = hitLancer;
             updateEffect = fireSmoke;
@@ -636,12 +631,12 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "多重窑炉";
             
             consumeItems(with(
-                    lead, 2,
+                    lead, 3,
                     sand, 3
             ));
             //consumeLiquid(Liquids.oil, 15/60f);
             consumePower(2.5f);
-            outputItem = new ItemStack(metaglass, 3);
+            outputItem = new ItemStack(metaglass, 5);
             health = 250;
             itemCapacity = 10;
             size = 3;
@@ -849,11 +844,11 @@ public class FantasyProjectGenericCrafter {
             ));
             //consumeLiquid(Liquids.oil, 15/60f);
             consumePower(150 / 60f);
-            outputItem = new ItemStack(金, 2);
+            outputItem = new ItemStack(金, 6);
             health = 280;
             itemCapacity = 10;
             size = 3;
-            craftTime = 120;
+            craftTime = 150;
             group = transportation;
             craftEffect =  new Effect(50, e -> {
                 color(e.color, C("f9e79a"), e.fin());
@@ -1124,8 +1119,8 @@ public class FantasyProjectGenericCrafter {
             requirements(crafting, with(
                     石英, 150,
                     铁, 110,
-                    钴, 220,
-                    镍板, 45
+                    钴, 90,
+                    铁板, 10
             ));
             drawer = new DrawMulti(new DrawDefault());
         }};
@@ -1163,7 +1158,7 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "固体放射机";
             
             consumeItems(with(
-                    放射混合物, 2, 空壳, 3
+                    放射混合物, 2, 空壳, 1
             ));
             //consumeLiquid(Liquids.water, 3/60f);
             consumePower(140 / 60f);
@@ -1192,7 +1187,7 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "辐射混合机";
             
             consumeItems(with(
-                    thorium, 1, sand, 2, titanium, 1
+                    钍, 1, sand, 2, 钴, 1
             ));
             //consumeLiquid(辐射混合物, 3/60f);
             consumePower(140 / 60f);
@@ -1230,11 +1225,11 @@ public class FantasyProjectGenericCrafter {
             consumeLiquid(辐射混合物, 3 / 60f);
             consumePower(220 / 60f);
             results = with(
-                    surgeAlloy, 70,
-                    金, 50,
-                    铁, 50,
-                    镍, 50,
-                    钻石混合物, 50
+                    surgeAlloy, 50,
+                    金, 70,
+                    铁, 100,
+                    镍, 30,
+                    钻石混合物, 13
             );
             health = 350;
             itemCapacity = 20;
@@ -1269,11 +1264,10 @@ public class FantasyProjectGenericCrafter {
         粒子离心机 = new Separator("粒子离心机") {{
             //localizedName = "粒子离心机";
             
-            consumeLiquid(军用液体, 4 / 60f);
+            consumeLiquid(军用液体, 1 / 60f);
             consumePower(340 / 60f);
 
             results = with(
-                    surgeAlloy, 4,
                     surgeAlloy, 60,
                     silicon, 130,
                     plastanium, 90,
@@ -1291,8 +1285,10 @@ public class FantasyProjectGenericCrafter {
             requirements(crafting, with(
                     titanium, 450,
                     graphite, 250,
+                    镍 ,60,
                     铁板, 60,
-                    啸动合金, 100
+                    钛合金, 80,
+                    钻石, 100
             ));
             drawer = new DrawMulti(new DrawRegion("-bottom"),
                     new DrawLiquidTile(军用液体){{drawLiquidLight = true;}},
@@ -1307,7 +1303,7 @@ public class FantasyProjectGenericCrafter {
         资源产生器 = new Separator("资源产生器") {{
             //localizedName = "资源产生器";
             
-            consumeLiquid(军用液体, 2 / 60f);
+            consumeLiquid(军用液体, 6 / 60f);
             consumePower(630 / 60f);
 
             results = with(
@@ -1321,14 +1317,17 @@ public class FantasyProjectGenericCrafter {
             itemCapacity = 200;
             size = 5;
             group = transportation;
+            canOverdrive = false;//不可超速 禁止超速
             craftTime = 5;
             liquidCapacity = 10;
             //ambientSoundVolume = 0.2f;
             //ambientSound = loadSound("shuisheng");
             requirements(crafting, with(
-                    titanium, 450,
-                    graphite, 250,
-                    铁板, 60,
+                    surgeAlloy, 500,
+                    钛合金, 160,
+                    铁板, 150,
+                    镍板, 100,
+                    钻石, 140,
                     啸动合金, 100
             ));
             drawer = new DrawMulti(
@@ -1342,7 +1341,7 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "冷冻液发生机";
             
             consumeItems(with(
-                    水瓶, 3, titanium, 3
+                    水瓶, 2, titanium, 3
             ));
             //consumeLiquid(辐射混合物, 3/60f);
             consumePower(160 / 60f);
@@ -1351,7 +1350,7 @@ public class FantasyProjectGenericCrafter {
             health = 350;
             itemCapacity = 10;
             size = 3;
-            craftTime = 60;
+            craftTime = 180;
             craftEffect = Fx.hitLaser;
             group = liquids;
             updateEffect = Fx.smeltsmoke;
@@ -1380,7 +1379,7 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "制冷液混合机";
             
             consumeItems(with(
-                    水瓶, 2, titanium, 4
+                    水瓶, 2, 钻石矿, 4
             ));
             consumeLiquid(Liquids.cryofluid, 30 / 60f);
             consumePower(200 / 60f);
@@ -1424,12 +1423,12 @@ public class FantasyProjectGenericCrafter {
                     surgeAlloy, 6
             ));
             //consumeLiquid(Liquids.water, 3/60f);
-            consumePower(750 / 60f);
+            consumePower(900 / 60f);
             outputItem = new ItemStack(啸动合金, 1);
             health = 720;
             itemCapacity = 25;
             size = 5;
-            craftTime = 650;
+            craftTime = 8*60;
             group = transportation;
             craftEffect = Fx.fireballsmoke;
             updateEffect = Fx.mine;
@@ -1454,7 +1453,7 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "军火材料机";
             
             consumeItems(with(
-                    啸动合金, 1, 水瓶, 6, titanium, 2
+                    啸动合金, 1, 固体放射物,2
 
             ));
             // consumeLiquid(制冷液, 12/60f);
@@ -1492,7 +1491,7 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "军火库";
             
             consumeLiquid(军用液体, 1.5f / 60f);
-            consumePower(3200 / 60f);
+            consumePower(5000 / 60f);
             canOverdrive = false;//禁止超速
             results = with(
                     硬直弹, 1,
@@ -1561,14 +1560,13 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "啸动冲击械";
             
             consumeItems(with(
-                    水瓶, 3,
-                    titanium, 2,
-                    冷冻弹, 2,
+                    水瓶, 2,
+                    钻石矿, 2,
                     啸动合金, 1
 
             ));
             consumeLiquid(制冷液, 48 / 60f);
-            consumePower(5200 / 60f);
+            consumePower(1200 / 60f);
             // outputItem = new ItemStack(黎辉水晶, 1);
             outputLiquid = new LiquidStack(啸冷剂, 24 / 60f);
             health = 1400;
@@ -1668,11 +1666,10 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "资源转换器-钛";
             
             consumeItems(with(
-                    thorium, 1,
-                    lead, 2
+                    thorium, 2
             ));
             consumePower(90 / 60f);
-            outputItem = new ItemStack(titanium, 2);
+            outputItem = new ItemStack(titanium, 1);
             //outputLiquid = new LiquidStack(啸冷剂, 120/60);
             health = 240;
             group = transportation;
@@ -1699,8 +1696,7 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "资源转换器-钍";
             
             consumeItems(with(
-                    titanium, 2,
-                    copper, 2
+                    titanium, 4
             ));
             consumePower(120 / 60f);
             outputItem = new ItemStack(thorium, 1);
