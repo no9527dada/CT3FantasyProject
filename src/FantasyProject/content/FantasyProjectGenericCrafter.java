@@ -44,7 +44,7 @@ public class FantasyProjectGenericCrafter {
             军火库, 水晶复合器, 啸动冲击械, 粒子离心机, 资源产生器, 钛合金反应炉, 镍板混合器, 碳板压缩机, 硫粉发生机, 镍板合成机,
             军火材料机, 啸动冶炼机, 固体放射机, 制冷液混合机, 冷冻液发生机, 辐射混合机, 矿物离心机, 放射混合器,
             物品厂_水瓶, 相织反应炉, 钻石提炼机, 钻石矿加工厂, 铁锻造机, 链式锻造机, 铁板锻造机, 铁板重型加工厂, 黄金熔炼器, 混合熔炼器,
-            钻石离心机,  钻石混合物反应机, 液电池制造厂, 多重编织机, 合金锤炼厂, 多重冶炼厂, 多重窑炉,煤炭离心机,
+            钻石离心机,  钻石混合物反应机, 液电池制造厂, 多重编织机, 合金锤炼厂, 孢子沉压机,多重冶炼厂, 多重窑炉,煤炭离心机,
             多重塑钢机, 爆炸冲击机, 空壳制造机, 弹药厂_冷冻, 弹药厂_碎裂, 弹药厂_爆破, 弹药厂_硬直, 大型粉碎机, 石英提取机, 石英磨练机,
             工厂;
 
@@ -73,7 +73,7 @@ public class FantasyProjectGenericCrafter {
             // updateEffect = plasticExplosion;
             updateEffectChance = 0.1F;
             group = transportation;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.5f;
             requirements(crafting, with(
                     Items.copper, 15,
@@ -111,7 +111,7 @@ public class FantasyProjectGenericCrafter {
             // updateEffect = plasticExplosion;
             updateEffectChance = 0.1F;
             group = transportation;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.5f;
             requirements(crafting, with(
                     Items.copper, 20,
@@ -140,7 +140,7 @@ public class FantasyProjectGenericCrafter {
             group = transportation;
             updateEffect = Fx.mine;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     石英, 100,
@@ -170,7 +170,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = Fx.fireballsmoke;
             updateEffect = Fx.mine;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     石英, 200,
@@ -267,7 +267,7 @@ public class FantasyProjectGenericCrafter {
             updateEffect = fireballsmoke;
             updateEffectChance = 0.1F;
             group = transportation;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.5f;
             requirements(crafting, with(
                     Items.copper, 150,
@@ -294,7 +294,7 @@ public class FantasyProjectGenericCrafter {
             group = transportation;
             updateEffect = fireballsmoke;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.5f;
             requirements(crafting, with(
                     Items.titanium, 50,
@@ -331,7 +331,7 @@ public class FantasyProjectGenericCrafter {
             updateEffect = none;
             group = transportation;
             updateEffectChance = 0.1F;
-            ambientSound = grinding;
+            ambientSound = loopGrind;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.copper, 150,
@@ -364,7 +364,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = fireballsmoke;
             updateEffect = smoke;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.5f;
             requirements(crafting, with(
                     Items.copper, 80,
@@ -392,7 +392,7 @@ public class FantasyProjectGenericCrafter {
             // craftEffect=hitLancer;
             updateEffect = smoke;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.lead, 90,
@@ -420,7 +420,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = hitLancer;
             updateEffect = hitLancer;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.lead, 150,
@@ -448,7 +448,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = hitLancer;
             updateEffect = hitLancer;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.lead, 150,
@@ -477,7 +477,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = hitLancer;
             updateEffect = hitLancer;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.lead, 150,
@@ -494,10 +494,10 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "弹药厂-硬直";
             
             consumeItems(with(空壳, 1,
-                    钻石混合物, 1, 钴, 1));
+                    钻石混合物, 1, 镍, 1));
             //consumeLiquid(Liquids.water, 0.1f);
             consumePower(220/60f);
-            outputItem = new ItemStack(硬直弹, 1);
+            outputItem = new ItemStack(硬直弹, 3);
             health = 220;
             itemCapacity = 10;
             size = 2;
@@ -506,11 +506,10 @@ public class FantasyProjectGenericCrafter {
             craftEffect = hitLancer;
             updateEffect = hitLancer;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.lead, 150,
-                    // Items.thorium, 50,
                     钴, 110,
                     石英, 150,
                     铁, 110
@@ -535,7 +534,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = hitFuse;
             updateEffect = fireSmoke;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.lead, 150,
@@ -571,7 +570,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = hitLancer;
             updateEffect = fireSmoke;
             updateEffectChance = 0.1F;
-            ambientSound = techloop;
+            ambientSound = loopTech;
             ambientSoundVolume = 0.1f;
             requirements(crafting, with(
                     Items.lead, 150,
@@ -609,7 +608,7 @@ public class FantasyProjectGenericCrafter {
                 });
             });
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.lead, 300,
@@ -645,7 +644,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = hitLancer;
             updateEffect = fireSmoke;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.copper, 150,
@@ -677,7 +676,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = Fx.steam;
             updateEffect = Fx.fireSmoke;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     Items.copper, 120,
@@ -722,7 +721,32 @@ public class FantasyProjectGenericCrafter {
             ));
             drawer = new DrawMulti(new DrawDefault(), new DrawFlame(Color.valueOf("ffef99")));
         }};
+        孢子沉压机 = new GenericCrafter("孢子沉压机"){{
+            requirements(Category.crafting, with(
+                    Items.lead, 80,
+                    Items.silicon, 45,
+                    Items.copper, 130,
+                    相织硅, 40,
+                    surgeAlloy, 75,
+                    镍板, 25,
+                    钴, 180));
+            liquidCapacity = 60f;
+            craftTime = 20f;
+            outputLiquid = new LiquidStack(Liquids.oil, 45f / 60f);
+            size = 3;
+            health = 320;
+            hasLiquids = true;
+            hasPower = true;
+            craftEffect = Fx.none;
+            drawer = new DrawMulti(
+                    new DrawRegion("-bottom"),
+                    new DrawLiquidTile(Liquids.oil),
+                     new DrawDefault()
+            );
 
+            consumeItem(Items.sporePod, 1);
+            consumePower(0.7f);
+        }};
 
         镍板合成机 = new GenericCrafter("镍板合成机") {{
             //localizedName = "镍板合成机";
@@ -747,7 +771,7 @@ public class FantasyProjectGenericCrafter {
                 });
             });;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.5f;
             requirements(crafting, with(
                     Items.copper, 80,
@@ -782,7 +806,7 @@ public class FantasyProjectGenericCrafter {
                 });
             });
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.5f;
             requirements(crafting, with(
                     Items.copper, 80,
@@ -822,7 +846,7 @@ public class FantasyProjectGenericCrafter {
                 Fill.circle(e.x, e.y, (7f - e.fin() * 7f)/2f);
             });
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     石英, 100,
@@ -861,7 +885,7 @@ public class FantasyProjectGenericCrafter {
                 Fill.circle(e.x, e.y, (7f - e.fin() * 7f)/2f);
             });
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     石英, 200,
@@ -880,11 +904,11 @@ public class FantasyProjectGenericCrafter {
             
             consumeItems(with(
                     碳板, 5,//我觉得使用碳板更好 而不是60个煤炭
-                    thorium, 7
+                    thorium, 12
             ));
             consumeLiquid(Liquids.cryofluid, 6 / 60f);
             consumePower(160 / 60f);
-            outputItem = new ItemStack(钻石, 1);
+            outputItem = new ItemStack(钻石, 3);
             health = 220;
             itemCapacity = 15;
             size = 3;
@@ -900,13 +924,13 @@ public class FantasyProjectGenericCrafter {
                 Lines.circle(e.x, e.y, 5f * e.fout());//向外圈
             });
             updateEffectChance = 0.05F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     石英, 300,
                     thorium, 350,
                     silicon, 220,
-                    镍板, 50,
+                    钴, 150,
                     金, 130,
                     铁, 180
 
@@ -930,7 +954,7 @@ public class FantasyProjectGenericCrafter {
             ));
             consumeLiquid(Liquids.water, 6 / 60f);
             consumePower(230 / 60f);
-            outputItem = new ItemStack(钻石混合物, 4);
+            outputItem = new ItemStack(钻石混合物, 15);
             health = 260;
             itemCapacity = 15;
             size = 3;
@@ -945,7 +969,7 @@ public class FantasyProjectGenericCrafter {
                 });
             });
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     石英, 300,
@@ -965,20 +989,20 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "钻石矿加工厂";
             
             consumeItems(with(
-                    钻石矿, 5
+                    钻石矿, 6
             ));
             consumeLiquid(Liquids.water, 6 / 60f);
             consumePower(350 / 60f);
-            outputItem = new ItemStack(钻石混合物, 3);
+            outputItem = new ItemStack(钻石混合物, 4);
             health = 260;
             itemCapacity = 15;
             size = 3;
-            craftTime = 90;
+            craftTime = 60;
             group = transportation;
             //craftEffect = Fx.fuelburn;
             updateEffect = hitLancer;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     石英, 300,
@@ -998,7 +1022,7 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "钻石提炼机";
             
             consumeItems(with(
-                    钻石混合物, 5,
+                    钻石混合物, 15,
                     graphite, 5
 
             ));
@@ -1018,7 +1042,7 @@ public class FantasyProjectGenericCrafter {
                 });
             });
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     石英, 300,
@@ -1052,7 +1076,7 @@ public class FantasyProjectGenericCrafter {
             craftEffect = fire;
             updateEffect = Fx.hitLancer;
             updateEffectChance = 0.1F;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.2f;
             requirements(crafting, with(
                     石英, 200,
@@ -1060,8 +1084,8 @@ public class FantasyProjectGenericCrafter {
                     thorium, 170,
                     phaseFabric, 60,
                     铁板, 50,
-                    silicon, 150,
-                    钻石混合物, 50
+                    silicon, 150
+
 
             ));
             drawer = new DrawMulti(new DrawDefault());
@@ -1115,7 +1139,7 @@ public class FantasyProjectGenericCrafter {
             updateEffect = Fx.mine;
             updateEffectChance = 0.1F;
             ambientSoundVolume = 0.2f;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             requirements(crafting, with(
                     石英, 150,
                     铁, 110,
@@ -1341,12 +1365,10 @@ public class FantasyProjectGenericCrafter {
             //localizedName = "冷冻液发生机";
             
             consumeItems(with(
-                    水瓶, 2, titanium, 3
+                    水瓶, 2, titanium, 2
             ));
-            //consumeLiquid(辐射混合物, 3/60f);
             consumePower(160 / 60f);
-            //outputItem = new ItemStack(放射混合物, 1);
-            outputLiquid = new LiquidStack(Liquids.cryofluid, 60 / 60f);
+            outputLiquid = new LiquidStack(Liquids.cryofluid, 160 / 60f);
             health = 350;
             itemCapacity = 10;
             size = 3;
@@ -1356,8 +1378,6 @@ public class FantasyProjectGenericCrafter {
             updateEffect = Fx.smeltsmoke;
             updateEffectChance = 0.1F;
             liquidCapacity = 200;
-            //ambientSoundVolume = 0.2f;
-            //ambientSound = loadSound("shuisheng");
             requirements(crafting, with(
                     石英, 120,
                     copper, 120,

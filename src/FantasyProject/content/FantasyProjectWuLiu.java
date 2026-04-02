@@ -391,10 +391,10 @@ public class FantasyProjectWuLiu {
                 health = 210;
                //hasPower = true;
                 group = BlockGroup.transportation;
-                buildType = Build::new;
-               // consumePower(6);
-            }
 
+               // consumePower(6);
+                buildType = Build::new;
+            }
         class Build extends BufferedItemBridgeBuild {
                 public boolean timer(int index, float time) {
                     return super.timer(index, time / 1000f);

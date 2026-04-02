@@ -36,7 +36,7 @@ public class FantasyProjectItems {
         合金 = surgeAlloy;
         石英 = new Item("石英", Color.valueOf("F5F5F5")) {{
 
-            hardness = 3;
+            hardness = 4;
 
         }};
         碳板 = new Item("碳板", Color.valueOf("696969")) {{
@@ -56,15 +56,15 @@ public class FantasyProjectItems {
         }};
         镍板 = new Item("镍板", Color.valueOf("2E8B57"));
         钻石混合物 = new Item("钻石混合物", Color.valueOf("008B8B")) {{
-            flammability = 1.5945f;
+            flammability = 1.2f;
         }};
         钻石 = new Item("钻石", Color.valueOf("00F5FF")) {{
-            flammability = 2.234f;
+            flammability = 1.7f;
             //explosiveness=0.3f;
         }};
         钻石矿 = new Item("钻石矿", Color.valueOf("008B8B")) {{
             hardness = 6;
-            flammability = 1.5945f;
+            flammability = 0.7f;
         }};
         相织硅 = new Item("相织硅", Color.valueOf("FFDAB9")) {{
             radioactivity = 1.2F;
@@ -92,7 +92,7 @@ public class FantasyProjectItems {
             flammability = 0.3f;
         }};
         固体放射物 = new Item("固体放射物", Color.valueOf("CD950C")) {{
-            radioactivity = 4.3F;
+            radioactivity = 2.1F;
             flammability = 0.5f;
         }};
         啸动合金 = new Item("啸动合金", Color.valueOf("FFFF00"));

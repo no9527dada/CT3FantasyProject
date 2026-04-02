@@ -12,6 +12,21 @@ Blocks.salvo.ammoTypes.put(
         return D;
     })(),
 );
+Blocks.swarmer.ammoTypes.put(
+    Items.graphite,(() => {
+        const D = new JavaAdapter(MissileBulletType, {});
+         D.damage = 5;
+                D.speed = 3.7;
+           D. width = 8;
+                   D.height = 8;
+                   D.shrinkY = 0;
+                   D.splashDamageRadius = 15;
+                   D.splashDamage = 15 * 1.5;
+                   D.ammoMultiplier = 5;
+
+        return D;
+    })(),
+);
 Blocks.cyclone.ammoTypes.put(
     Items.plastanium, (() => {
         const D = new JavaAdapter(FlakBulletType, {});

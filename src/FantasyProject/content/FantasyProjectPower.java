@@ -15,10 +15,8 @@ import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
 
 import static FantasyProject.content.FantasyProjectItems.*;
-import static CtCoreSystem.CoreSystem.type.CTTechTree.addToTree;
 import static mindustry.content.Liquids.oil;
 
-import static mindustry.content.Blocks.*;
 import static mindustry.content.Items.*;
 import static mindustry.type.Category.*;
 import static mindustry.type.ItemStack.with;
@@ -77,7 +75,7 @@ public class FantasyProjectPower {
             powerProduction = 220 / 60f;
             itemDuration = 150;
             itemCapacity = 15;
-            ambientSound = Sounds.smelter;
+            ambientSound = Sounds.loopSmelter;
             ambientSoundVolume = 0.03f;
             generateEffect = Fx.generatespark;
             health = 140;
@@ -101,13 +99,13 @@ public class FantasyProjectPower {
             powerProduction = 650 / 60f;
             itemDuration = 90;
             itemCapacity = 10;
-            ambientSound = Sounds.smelter;
+            ambientSound = Sounds.loopSmelter;
             ambientSoundVolume = 0.03f;
             generateEffect = Fx.generatespark;
             health = 170;liquidCapacity=30;
             consume(new ConsumeItemFlammable());
             consume(new ConsumeItemExplode());
-            consumeLiquid(Liquids.water, 6 / 60f).update(false);
+            consumeLiquid(Liquids.water, 6 / 60f);
             drawer = new DrawMulti( new DrawRegion("-bottom"),
                     new DrawLiquidTile(Liquids.water),
                     new DrawDefault(),
@@ -128,7 +126,7 @@ public class FantasyProjectPower {
             itemDuration = 240;
             itemCapacity = 3;
             liquidCapacity=50;
-            ambientSound = Sounds.smelter;
+            ambientSound = Sounds.loopSmelter;
             ambientSoundVolume = 0.03f;
             generateEffect = Fx.generatespark;
             health = 170;
@@ -238,7 +236,7 @@ public class FantasyProjectPower {
             size = 2;
             itemCapacity = 2;
             liquidCapacity = 10;
-            // ambientSound = Sounds.hum;
+            // ambientSound = Sounds.loopHum;
             // ambientSoundVolume = 0.06f;
 
 
@@ -266,7 +264,7 @@ public class FantasyProjectPower {
             size = 2;
             itemCapacity = 4;
             liquidCapacity = 10;
-            // ambientSound = Sounds.hum;
+            // ambientSound = Sounds.loopHum;
             //ambientSoundVolume = 0.06f;
         }};
       addToTree(中压太阳发电机, 低压太阳发电机);
@@ -293,7 +291,7 @@ public class FantasyProjectPower {
             size = 3;
             itemCapacity = 6;
             liquidCapacity = 10;
-            // ambientSound = Sounds.hum;
+            // ambientSound = Sounds.loopHum;
             //ambientSoundVolume = 0.06f;
         }};
       addToTree(高压太阳发电机, 中压太阳发电机);*/
@@ -332,7 +330,7 @@ public class FantasyProjectPower {
             effectChance = 0.011f;
             size = 2;
             floating = true;
-            ambientSound = Sounds.hum;
+            ambientSound = Sounds.loopHum;
             ambientSoundVolume = 0.06f;
         }};
 
@@ -348,12 +346,12 @@ public class FantasyProjectPower {
             ));
             health = 320;
             attribute = Attribute.water;
-            powerProduction = 430 / 60f;
+            powerProduction = 480 / 60f;
             generateEffect = Fx.reactorsmoke;
             effectChance = 0.011f;
             size = 3;
             floating = true;
-            ambientSound = Sounds.hum;
+            ambientSound = Sounds.loopHum;
             ambientSoundVolume = 0.06f;
         }};
 
@@ -374,7 +372,7 @@ public class FantasyProjectPower {
             effectChance = 0.011f;
             size = 3;
             floating = true;
-            ambientSound = Sounds.hum;
+            ambientSound = Sounds.loopHum;
             ambientSoundVolume = 0.06f;
         }};
 
@@ -393,7 +391,7 @@ public class FantasyProjectPower {
             explosionDamage = 4500;*/
             itemCapacity = 30;
             liquidCapacity = 100;
-            ambientSound = Sounds.hum;
+            ambientSound = Sounds.loopHum;
             ambientSoundVolume = 0.24f;
             size = 3;
             health = 2300;
@@ -408,7 +406,8 @@ public class FantasyProjectPower {
 
 
         石油冲击发电机 = new ImpactReactor("石油冲击发电机") {{
-            //localizedName = "石油冲击发电机";
+          float 发电量=42000;
+            float 耗电量=4200;
             requirements(power, with(
                     镍板, 400,
                     相织硅, 550,
@@ -423,14 +422,14 @@ public class FantasyProjectPower {
             liquidCapacity = 400;
             // itemDuration = 240;
             warmupSpeed = 0.0008f;
-            powerProduction = 77000 / 60f;//4.2W发电量
+            powerProduction = (发电量+耗电量) / 60f;//4.2W发电量
             explosionRadius = 50 * 8; //爆炸半径 除以8
             explosionDamage = 14000; //爆炸伤害
             hasItems = false;
             itemDuration = 300f;
             //consumePowerBuffered(130000);
-            consumePower(35000 / 60f);
-            ambientSound = Sounds.pulse;
+            consumePower(耗电量 / 60f);
+            ambientSound = Sounds.loopPulse;
             ambientSoundVolume = 0.07f;
             consumeItem(固体放射物, 1);
             consumeLiquid(oil, 0.5f);
@@ -454,7 +453,7 @@ public class FantasyProjectPower {
             health = 7600; //
             hasItems = true;
             size = 5; armor=18;
-            ambientSound = Sounds.steam;
+            ambientSound = Sounds.loopDifferential;
             generateEffect = Fx.generatespark;
             ambientSoundVolume = 0.03f;
             itemDuration = 60 * 60;//60秒

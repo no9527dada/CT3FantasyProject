@@ -16,6 +16,7 @@ public class FantasyProjectInfoDialog {
             String QQ群2 = "https://jq.qq.com/?_wv=1027&k=oygqLbJ5";
             String Git="https://github.com/no9527dada/CtCoreSystem/releases";
             String Steam="https://steamcommunity.com/sharedfiles/filedetails/?id=3292837678";
+            String 网盘 = "https://pan.quark.cn/s/571579daddcf";
             BaseDialog hghghg = new BaseDialog("warning") {
                 String toText(String str) {
                     return Core.bundle.format(str, new Object[0]);
@@ -44,13 +45,19 @@ public class FantasyProjectInfoDialog {
                                 Vars.ui.showErrorMessage("@linkfail");
                                 Core.app.setClipboardText(Git);
                             }
-                        })).size(160, 50);
+                        })).size(160, 50).row();
                         i.button("Steam", (() -> {
                             if (!Core.app.openURI(Steam)) {
                                 Vars.ui.showErrorMessage("@linkfail");
                                 Core.app.setClipboardText(Steam);
                             }
-                        })).size(160, 50).padLeft(0);
+                        })).size(160, 50).padLeft(0).row();
+                        i.button("网盘下载", (() -> {
+                            if (!Core.app.openURI(网盘)) {
+                                Vars.ui.showErrorMessage("@linkfail");
+                                Core.app.setClipboardText(网盘);
+                            }
+                        })).size(160, 50).padLeft(0).row();
                         i.button(Core.bundle.format("QQ群2"), (() -> {
                             if (!Core.app.openURI(QQ群2)) {
                                 Vars.ui.showErrorMessage("@linkfail");

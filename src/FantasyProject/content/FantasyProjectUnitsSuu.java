@@ -41,7 +41,7 @@ public class FantasyProjectUnitsSuu {
         秃鹫 = new 战机("秃鹫", 4f, 3, 1000) {{
             abilities.add(new RepairFieldAbility(1000f, 60f * 3, 0.5f));
             abilities.add(new StatusFieldAbility(射速, 60f * 5, 60f * 15f, 1f));
-            weapons.add(new 武器3(0){{shootSound=Sounds.shootBig;}});
+            weapons.add(new 武器3(0){{shootSound=Sounds.shootToxopidShotgun;}});
             weapons.add(new 武器3(3));
             weapons.add(new 武器3(-3));
             weapons.add(new 武器3(6));
@@ -109,7 +109,7 @@ public class FantasyProjectUnitsSuu {
             abilities.add(new RepairFieldAbility(500f, 60f * 2, 0.5f));
             weapons.add(new 武器1(
                     "ct_fantasy_project-zidan1", 8, 0, 0, 25, 90,
-                    15, 40, 12, 30, C("feb203"), C("feec03"), Sounds.missile
+                    15, 40, 12, 30, C("feb203"), C("feec03"), Sounds.shootMissile
             ));
             weapons.add(new 武器1(
                     "ct_fantasy_project-zidan2", 8, 0, 15, 10, 70,
@@ -145,7 +145,7 @@ public class FantasyProjectUnitsSuu {
                     15, 50, 40, 40, C("feb203"), C("feec03"),
                     195, 15, 150
             ) {{
-                shootSound = Sounds.dullExplosion;
+                shootSound = Sounds.explosionDull;
                 Y移动倍率 = 1;
                 name = "ct_fantasy_project-飞鹰僚机";
                 X移动倍率 = -1;
@@ -158,7 +158,7 @@ public class FantasyProjectUnitsSuu {
 
             // 副武器
             weapons.add(new 副武器僚机2(10, 0, 0, 120, 8, 0, 90, 0, 0, "ct_fantasy_project-zidan5") {{
-                shootSound = Sounds.lasershoot;
+                shootSound = Sounds.shootPulsar;
                 Y移动倍率 = 1;
                 name = "ct_fantasy_project-战鹰僚机";
                 //X初相=-120;

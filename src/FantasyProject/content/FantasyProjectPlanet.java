@@ -43,7 +43,7 @@ public class FantasyProjectPlanet {
             atmosphereColor = Color.valueOf("ee7433");
             landCloudColor = Pal.spore.cpy().a(0.5f);
             meshLoader = () -> new HexMesh(this, 7);
-            itemWhitelist.addAll(mod资源5显示);
+            allowCampaignRules = true;//允许难度更改规则
             bloom = true;
             startSector = 100;
             alwaysUnlocked = true;
@@ -52,7 +52,7 @@ public class FantasyProjectPlanet {
             allowLaunchSchematics = false;//开启发射核心蓝图
             allowLaunchLoadout = false;//开启携带资源发射
             allowSectorInvasion = false;//模拟攻击图入侵
-            allowWaveSimulation = false;//模拟后台波次
+            //allowWaveSimulation = false;//模拟后台波次
             accessible = true;
             //TODO SHOULD there be lighting?
             updateLighting = true;//模拟白天黑夜  开启星球自转
@@ -74,8 +74,11 @@ public class FantasyProjectPlanet {
                 r.onlyDepositCore = false;//物品只能存放在核心 关闭
                 r.coreDestroyClear = true;//死亡时(敌人)核心半径内的每个敌人方块都会被摧毁。
                 r.teams.get(Team.sharded).unitHealthMultiplier = 1.8f;//己方单位血量
+                r.teams.get(Team.sharded).unitDamageMultiplier = 1.8f;//己方单位伤害
+                r.teams.get(Team.crux).unitHealthMultiplier = 1.4f;//敌人单位血量
                 r.teams.get(Team.crux).unitDamageMultiplier = 1.2f;//敌人单位伤害
-                r.teams.get(Team.crux).blockDamageMultiplier = 1.5f;//敌人建筑伤害
+                r.teams.get(Team.crux).blockDamageMultiplier = 1.0f;//敌人建筑伤害
+                r.teams.get(Team.crux).blockHealthMultiplier = 3f;//敌人建筑血量
                 r.waveTeam = Team.crux;
                 r.fog = false;//迷雾
                 r.placeRangeCheck = false;

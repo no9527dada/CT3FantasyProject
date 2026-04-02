@@ -390,12 +390,13 @@ public class FantasyProjectUnitsBulletTypes {
                 x = 0;
                 reload = 55f;
                 recoil = -1f;//武器射击时后退
-                shootSound = Sounds.shockBlast;
+                shootSound = Sounds.explosionObviate;
                 rotate = false;//武器旋转
                 shootCone = 120f;
                 // shoot = new ShootSpread(1,0);
 
                 bullet = new LaserBulletType() {{
+                    buildingDamageMultiplier = 0f;
                     damage = 伤害;
                     impact=false;
                     recoil = 0f;//射击时单位后退
@@ -441,6 +442,7 @@ public class FantasyProjectUnitsBulletTypes {
                 shootSound=loadSound("战鹰M1");
                 bullet = new BasicBulletType(速度, 800) {
                     {
+                        buildingDamageMultiplier = 0f;
                         sprite = 贴图;
                         backColor = Color.valueOf("d564de");
                         frontColor = Color.valueOf("f9abff");
@@ -494,11 +496,12 @@ public class FantasyProjectUnitsBulletTypes {
                 shoot.firstShotDelay = Fx.greenLaserChargeSmall.lifetime - 1f;
                 parentizeEffects = true;//射击效果跟随单位
                 rotate = false;//武器旋转
-                chargeSound = Sounds.lasercharge2;
-                shootSound = Sounds.beam;
+                chargeSound = Sounds.chargeVela;
+                shootSound = Sounds.beamPlasma;
                 continuous = true;
                 cooldownTime = 200f;
                 bullet = new ContinuousLaserBulletType() {{
+                    buildingDamageMultiplier = 0f;
                     damage = 伤害/12F;
                     length = 180*4f;
                     hitEffect = Fx.hitMeltHeal;
@@ -543,7 +546,7 @@ public class FantasyProjectUnitsBulletTypes {
             shake = 1f;
             inaccuracy = 0f;
             // velocityRnd = 0.2f;
-            shootSound = Sounds.missile;
+            shootSound = Sounds.shootMissile;
             baseRotation = 角度;
             shoot = new ShootPattern() {{
                 shotDelay = 6;
@@ -556,7 +559,7 @@ public class FantasyProjectUnitsBulletTypes {
                 height = 20f;
              /*       shrinkY = 0f;
                     drag = -0.003f;*/
-
+                buildingDamageMultiplier = 0f;
                 splashDamageRadius = 5 * 8;
                 splashDamage = De * 2;
                 lifetime = 150f;

@@ -1,5 +1,6 @@
 package FantasyProject.content;
 
+import CtCoreSystem.CoreSystem.type.Ovulam5480.CTOverdriveProjector;
 import CtCoreSystem.CoreSystem.type.Ovulam5480.JumpQi;
 import arc.Core;
 import mindustry.Vars;
@@ -9,10 +10,7 @@ import mindustry.game.Team;
 import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.Tile;
-import mindustry.world.blocks.defense.ForceProjector;
-import mindustry.world.blocks.defense.MendProjector;
-import mindustry.world.blocks.defense.OverdriveProjector;
-import mindustry.world.blocks.defense.Wall;
+import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.blocks.units.RepairTurret;
 import mindustry.world.meta.Env;
@@ -30,7 +28,7 @@ import static mindustry.type.ItemStack.with;
 //方块
 public class FantasyProjectDefense {
     public static Block 聚能投影械, 增幅投影器, 极速投影器, 大型维修点, 跳波器, 增幅修复仪, 聚能修复仪, 增幅护盾仪,
-            铅墙, 大型铅墙, 硅墙, 大型硅墙, 相织硅墙, 大型相织硅墙, 钴墙, 大型钴墙, 破墙器,
+            铅墙, 大型铅墙, 硅墙, 大型硅墙, 相织硅墙, 大型相织硅墙, 钴墙, 大型钴墙, 破墙器,钴门,
             高级塑钢墙, 大型高级塑钢墙, 钛合金墙, 大型钛合金墙, 巨型钛合金墙, 超大型钛合金墙;
 
     //      @Override
@@ -165,37 +163,41 @@ public class FantasyProjectDefense {
             requirements(defense, with(钛合金, 10, 固体放射物, 10));
             health = 3200;
             size = 1;
-            buildCostMultiplier = 5;
+            buildTime = 3f*10;
+            // buildCostMultiplier = 3;
             envDisabled |= Env.scorching;
         }};
 
 
         大型钛合金墙 = new Wall("大型钛合金墙") {{
             //localizedName = "大型钛合金墙";
-            requirements(defense, with(钛合金, 60, 固体放射物, 20));
+            requirements(defense, with(钛合金, 20, 固体放射物, 20,钴, 50));
             health = 7500;
             size = 2;
-            buildCostMultiplier = 5;
+            buildTime = 7f*10;
+            // buildCostMultiplier = 3;
             envDisabled |= Env.scorching;
         }};
 
 
         巨型钛合金墙 = new Wall("巨型钛合金墙") {{
             //localizedName = "巨型钛合金墙";
-            requirements(defense, with(钛合金, 120, 固体放射物, 40));
+            requirements(defense, with(钛合金, 40, 固体放射物, 30,镍板,15,钴, 130));
             health = 11000;
             size = 3;
-            buildCostMultiplier = 5;
+            buildTime = 13f*10;//建造时间 13秒
+            // buildCostMultiplier = 3;
             envDisabled |= Env.scorching;
         }};
 
 
         超大型钛合金墙 = new Wall("超大型钛合金墙") {{
             //localizedName = "超大型钛合金墙";
-            requirements(defense, with(钛合金, 210, 固体放射物, 90, 钴, 130));
+            requirements(defense, with(钛合金, 90, 固体放射物, 50,镍板,40, 啸动合金,5,钴, 200));
             health = 15500;
             size = 4;
-            buildCostMultiplier = 5;
+            buildTime = 20f*10;
+           // buildCostMultiplier = 3;
             envDisabled |= Env.scorching;
         }};
 
@@ -248,7 +250,7 @@ public class FantasyProjectDefense {
                 }
             }
             {
-                requirements(effect, with(啸动合金, 20, 爆破弹, 5000));
+                requirements(effect, with(啸动合金, 20, 爆破弹, 3000));
                 health = 100;
                 size = 1;
                 update = true;
@@ -259,6 +261,15 @@ public class FantasyProjectDefense {
                buildType = Build::new;
             }
         };
+        钴门 = new Door("钴门") {{
+            //localizedName = "钛合金墙";
+            requirements(defense, with(钴, 50, 硅, 100));
+            health = 4000;
+            size = 3;
+            buildCostMultiplier = 4;
+            envDisabled |= Env.scorching;
+            placeableLiquid = true;//可被放在深水之上
+        }};
         跳波器 = new JumpQi("跳波器") {{
             requirements(effect, with(
                     Items.copper, 15,
@@ -268,20 +279,21 @@ public class FantasyProjectDefense {
         }};
         大型维修点 = new RepairTurret("大型维修点") {{
             //localizedName = "大型维修点";
-            repairSpeed = 1.5f;
-            repairRadius = 220;
+            repairSpeed = 2f;//治疗量 1:60
+            repairRadius = 62f*8;//范围
             beamWidth = 0.73f;
-            powerUse = 90 / 60f;
+            powerUse = 150 / 60f;//耗电
             pulseRadius = 150f;
             requirements(units, with(
                     copper, 60,
                     lead, 60,
-                    silicon, 35
+                    silicon, 35,
+                    金,30
             ));
             health = 150;
             size = 2;
         }};
-        极速投影器 = new OverdriveProjector("极速投影器") {{
+        极速投影器 = new CTOverdriveProjector("极速投影器") {{
             //localizedName = "极速投影器";
             health = 480;
             range = 25 * 8;//范围
@@ -305,7 +317,7 @@ public class FantasyProjectDefense {
         }};
 
 
-        增幅投影器 = new OverdriveProjector("增幅投影器") {{
+        增幅投影器 = new CTOverdriveProjector("增幅投影器") {{
             //localizedName = "增幅投影器";
             health = 480 + 250;
             range = 33 * 8;//范围
@@ -329,7 +341,7 @@ public class FantasyProjectDefense {
             consumeItem(液电池, 1).boost();
         }};
 
-        聚能投影械 = new OverdriveProjector("聚能投影械") {{
+        聚能投影械 = new CTOverdriveProjector("聚能投影械") {{
             //localizedName = "聚能投影械";
             health = 480 + 250 + 530;
             range = 55 * 8;//范围
@@ -392,14 +404,14 @@ public class FantasyProjectDefense {
                     相织硅, 60
 
             ));
-            consumePower(3500 / 60f);
+            consumePower(1200 / 60f);
             size = 4;
             consumeItem(相织硅, 2).boost();
         }};
         增幅护盾仪 = new ForceProjector("增幅护盾仪") {{
             health = 1300;
-            shieldHealth = 6000;
-            phaseShieldBoost = 15000 - 6000;
+            shieldHealth = 13000;
+            phaseShieldBoost = 25000 - 13000;
             radius = 184;
             phaseUseTime = 30 * 60;
             phaseRadiusBoost = 200;

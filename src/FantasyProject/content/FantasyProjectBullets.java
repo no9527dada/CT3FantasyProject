@@ -1,14 +1,11 @@
 package FantasyProject.content;
 
-import arc.graphics.Color;
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Fill;
-import arc.math.Interp;
-import arc.math.Mathf;
-import arc.util.Tmp;
 import CtCoreSystem.content.Effect.CT3FxEffect;
 import CtCoreSystem.content.Effect.NewEffect;
 import CtCoreSystem.content.Effect.NewFx;
+import arc.graphics.Color;
+import arc.graphics.g2d.Fill;
+import arc.math.Interp;
 import mindustry.Vars;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
@@ -19,7 +16,6 @@ import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.entities.effect.WaveEffect;
 import mindustry.entities.part.HaloPart;
-import mindustry.gen.Bullet;
 import mindustry.gen.Sounds;
 import mindustry.graphics.Drawf;
 import mindustry.graphics.Layer;
@@ -27,10 +23,9 @@ import mindustry.graphics.Pal;
 
 import static CtCoreSystem.content.NewColor.*;
 import static arc.graphics.g2d.Draw.color;
-import static CtCoreSystem.CoreSystem.CT3Sound.loadSound;
 import static mindustry.content.Fx.*;
-import static mindustry.gen.Sounds.laser;
-import static mindustry.gen.Sounds.plasmaboom;
+import static mindustry.content.Fx.none;
+import static mindustry.gen.Sounds.*;
 
 public class FantasyProjectBullets {
     //如果要要写个贴图 用string xxx
@@ -46,43 +41,46 @@ public class FantasyProjectBullets {
     /** 这种子弹类型是否与方块碰撞. */
     //public boolean collidesTiles = true;
     /** 这种子弹类型是否与同一组的瓦片发生碰撞. */
-   // public boolean collidesTeam = false;
+    // public boolean collidesTeam = false;
     /**这种子弹类型是否与空中/地面单位碰撞. */
-   // public boolean collidesAir = true, collidesGround = true;
+    // public boolean collidesAir = true, collidesGround = true;
     /** 这种类型的子弹是否会撞到任何东西. */
-   // public boolean collides = true;
+    // public boolean collides = true;
     /** 如果成立，这个弹丸会与非表面的地板相撞. */
     //public boolean collideFloor = false;
     /** 如果成立，这个弹丸会与静壁相撞 */
-   //public boolean collideTerrain = false;
-    /** 速度是否遗传自射手. */
+    //public boolean collideTerrain = false;
+
+    /**
+     * 速度是否遗传自射手.
+     */
     //public boolean keepVelocity = true;
 
 
     // collidesAir = collidesGround = true;//对空对地 子弹
     public static class 制裁Bullet extends BasicBulletType {
-     /*   @Override
-        public void draw(Bullet b){
-            super.draw(b);
-            // float shrink = shrinkInterp.apply(b.fout());
-            float height = this.height * ((1f - shrinkY) + shrinkY );
-            float width = this.width * ((1f - shrinkX) + shrinkX );
-            float offset = -90 + (spin != 0 ? Mathf.randomSeed(b.id, 360f) + b.time * spin : 0f) + rotationOffset;
+        /*   @Override
+           public void draw(Bullet b){
+               super.draw(b);
+               // float shrink = shrinkInterp.apply(b.fout());
+               float height = this.height * ((1f - shrinkY) + shrinkY );
+               float width = this.width * ((1f - shrinkX) + shrinkX );
+               float offset = -90 + (spin != 0 ? Mathf.randomSeed(b.id, 360f) + b.time * spin : 0f) + rotationOffset;
 
-            Color mix = Tmp.c1.set(mixColorFrom).lerp(mixColorTo, b.fin());
+               Color mix = Tmp.c1.set(mixColorFrom).lerp(mixColorTo, b.fin());
 
-            Draw.mixcol(mix, mix.a);
+               Draw.mixcol(mix, mix.a);
 
-            if(backRegion.found()){
-                Draw.color(backColor);
-                Draw.rect(backRegion, b.x, b.y, width, height, b.rotation() + offset);
-            }
+               if(backRegion.found()){
+                   Draw.color(backColor);
+                   Draw.rect(backRegion, b.x, b.y, width, height, b.rotation() + offset);
+               }
 
-            Draw.color(frontColor);
-            Draw.rect(frontRegion, b.x, b.y, width, height, b.rotation() + offset);
+               Draw.color(frontColor);
+               Draw.rect(frontRegion, b.x, b.y, width, height, b.rotation() + offset);
 
-            Draw.reset();
-        }*/
+               Draw.reset();
+           }*/
         public 制裁Bullet(float lifetimee, float damagee, float speedd) {
             // super();
             lifetime = lifetimee;
@@ -120,7 +118,7 @@ public class FantasyProjectBullets {
             width = 17;
             height = 23;
             //蓄力射击开始时产生的效果;仅适用于具有 firstShotDelay / shotDelay 的单发武器。
-            chargeEffect = Fx.none;
+            chargeEffect = none;
             shootEffect = shootBig;//发射的炮口产生的特效
             smokeEffect = shootSmallSmoke;//发射时产生额外的烟雾效果。
             ammoMultiplier = 倍率;
@@ -135,8 +133,8 @@ public class FantasyProjectBullets {
             despawnEffect = NewFx.灭亡子弹消失;
             splashDamage = 0;//范围伤害
             splashDamageRadius = 0;//范围伤害的范围
-           collidesAir = collidesGround = true;//对空对地
-            pierceBuilding= pierce = true;//双穿
+            collidesAir = collidesGround = true;//对空对地
+            pierceBuilding = pierce = true;//双穿
             // pierceCap = 4;
             pierceDamageFactor = 0.15f;
 
@@ -147,7 +145,7 @@ public class FantasyProjectBullets {
         public 毁灭Bullet(float lifetimee, float damagee, float speedd, float 射速, float 倍率) {
             // super();
             lifetime = lifetimee;
-            damage = damagee/2;
+            damage = damagee / 2;
             absorbable = false;//子弹不被护盾仪吸收
             speed = speedd;
             sprite = "ctcoresystem-round";
@@ -174,7 +172,7 @@ public class FantasyProjectBullets {
             collidesAir = collidesGround = true;//对空对地
                        /*子弹消失时的效果，可能和hitEffect有些相似。
             不同的是这个效果只会显示一次，如果是hitEffect可能会在多个目标上显示，比如子弹贯穿多个单位或建筑*/
-           hitEffect= despawnEffect = NewFx.毁灭despawnEffect(); //NewFx.制裁子弹消失;
+            hitEffect = despawnEffect = NewFx.毁灭despawnEffect(); //NewFx.制裁子弹消失;
 
             //蓄力射击开始时产生的效果;仅适用于具有 firstShotDelay / shotDelay 的单发武器。
             chargeEffect = none;
@@ -185,9 +183,9 @@ public class FantasyProjectBullets {
         public 散射炮Bullet(float lifetimee, float damagee, float speedd, float 射速, float 倍率) {
             // super();
             lifetime = lifetimee;
-            damage = damagee ;
+            damage = damagee;
             speed = speedd;
-            pierce=true;//穿透
+            pierce = true;//穿透
             width = 10;
             height = 13;
             ammoMultiplier = 倍率;
@@ -243,8 +241,8 @@ public class FantasyProjectBullets {
             //trailChance = 0.3f;
             splashDamage = -1;//范围伤害,负值禁用
             splashDamageRadius = 0;//范围伤害的范围
-            collidesAir =false;//对空
-                    collidesGround = true;//对空对地
+            collidesAir = false;//对空
+            collidesGround = true;//对空对地
                        /*子弹消失时的效果，可能和hitEffect有些相似。
             不同的是这个效果只会显示一次，如果是hitEffect可能会在多个目标上显示，比如子弹贯穿多个单位或建筑*/
             despawnEffect = Fx.blastExplosion; //NewFx.制裁子弹消失;
@@ -268,7 +266,7 @@ public class FantasyProjectBullets {
             buildingDamageMultiplier = 0.2f;
             statusDuration = 80;
             ammoMultiplier = 1;
-            hitSound= Vars.tree.loadSound("光棱");
+            hitSound = Vars.tree.loadSound("光棱");
             //蓄力射击开始时产生的效果;仅适用于具有 firstShotDelay / shotDelay 的单发武器。
             hitEffect = chargeEffect = new MultiEffect(Fx.lancerLaserChargeBegin) {
                 {
@@ -318,7 +316,7 @@ public class FantasyProjectBullets {
                 lightningType = new BulletType(0.0001f, 0f) {{
                     lifetime = Fx.lightning.lifetime;
                     hitEffect = Fx.hitLancer;
-                    despawnEffect = Fx.none;
+                    despawnEffect = none;
                     status = StatusEffects.shocked;
                     statusDuration = 10f;
                     hittable = false;
@@ -340,7 +338,7 @@ public class FantasyProjectBullets {
             buildingDamageMultiplier = 0.2f;
             statusDuration = 80;
             ammoMultiplier = 1;
-            hitSound= Vars.tree.loadSound("光棱");
+            hitSound = Vars.tree.loadSound("光棱");
             //蓄力射击开始时产生的效果;仅适用于具有 firstShotDelay / shotDelay 的单发武器。
             hitEffect = new MultiEffect(Fx.lancerLaserChargeBegin) {
                 {
@@ -425,7 +423,7 @@ public class FantasyProjectBullets {
             }});
             smokeEffect = Fx.shootSmokeTitan;
             hitColor = Pal.sapBullet;
-            despawnSound = Sounds.spark;
+            despawnSound = Sounds.shootEnergyField;
 
             sprite = "large-orb";
             trailEffect = Fx.missileTrail;
@@ -463,7 +461,7 @@ public class FantasyProjectBullets {
                 lightningType = new BulletType(0.0001f, 0f) {{
                     lifetime = Fx.lightning.lifetime;
                     hitEffect = Fx.hitLancer;
-                    despawnEffect = Fx.none;
+                    despawnEffect = none;
                     status = StatusEffects.shocked;
                     statusDuration = 10f;
                     hittable = false;
@@ -499,7 +497,7 @@ public class FantasyProjectBullets {
             }});
             smokeEffect = Fx.shootSmokeTitan;
             hitColor = Pal.sapBullet;
-            despawnSound = Sounds.spark;
+            despawnSound = Sounds.shootEnergyField;
 
             sprite = "large-orb";
             trailEffect = Fx.missileTrail;
@@ -563,7 +561,7 @@ public class FantasyProjectBullets {
             }});
             smokeEffect = Fx.shootSmokeTitan;
             hitColor = Pal.sapBullet;
-            despawnSound = Sounds.spark;
+            despawnSound = Sounds.shootEnergyField;
             //pierce = true;
             sprite = "ctcoresystem-large-orb";
             trailEffect = Fx.missileTrail;
@@ -621,7 +619,7 @@ public class FantasyProjectBullets {
     ;
 
     public static class 皇后Bullet extends BasicBulletType {
-        public 皇后Bullet(float damagee, float 倍率, float 速度, float 射速) {
+        public 皇后Bullet(float damagee, float 倍率, float 速度, float 射速, int 穿透数量) {
             /*      ;*/
 
             shootEffect = new MultiEffect(Fx.shootTitan, new WaveEffect() {{
@@ -632,16 +630,18 @@ public class FantasyProjectBullets {
             }});
             smokeEffect = Fx.shootSmokeTitan;
             hitColor = 皇后Bullet颜色2;
-            despawnSound = Sounds.spark;
+            despawnSound = Sounds.shootEnergyField;
             spin = 10;
             sprite = "ctcoresystem-皇后1";
             trailEffect = none;
             // trailInterval = 3f;
             // trailParam = 4f;
             pierce = true;
+            pierceCap = 穿透数量;
             speed = 速度;
             damage = damagee;
-            lifetime = 240;
+            lifetime = 150;
+            buildingDamageMultiplier = 0.01f;
             width = height = 50f;
             backColor = 皇后Bullet颜色1;
             frontColor = 皇后Bullet颜色2;
@@ -668,9 +668,10 @@ public class FantasyProjectBullets {
             /*      ;*/
 
             // shootEffect =
+            absorbable = false;//子弹不被护盾仪吸收
             smokeEffect = Fx.shootSmokeTitan;
             hitColor = 帝王Bullet颜色2;
-            despawnSound = Sounds.spark;
+            despawnSound = Sounds.shootEnergyField;
             spin = 5;
             sprite = "ctcoresystem-帝王1";
             trailEffect = new ParticleEffect() {{
@@ -683,6 +684,7 @@ public class FantasyProjectBullets {
                 sizeTo = 3f;
                 spin = 5f;
             }};
+            // scaleLife=true;////
             trailInterval = 2f;//每次产生的间隔时间
             trailParam = 3f;//每次产生的数量
             trailColor = 帝王Bullet颜色2;
@@ -736,11 +738,11 @@ public class FantasyProjectBullets {
                 trailLength = 9;//小于等于0会禁用
 
                 splashDamage = damagee2;//范围伤害
-                splashDamageRadius = 5 * 8;//范围伤害的范围
+                splashDamageRadius = 8 * 8;//范围伤害的范围
                 backColor = 帝王Bullet颜色1;
                 frontColor = 帝王Bullet颜色2;
                 lifetime = 360f;
-
+                status = StatusEffects.melting;statusDuration=90;//熔化BUFF 1.5秒
                 hitEffect = despawnEffect = new NewEffect.BulletWaveEffect() {{
                     sizeFrom = 0f;
                     sizeTo = 20f;
@@ -823,7 +825,7 @@ public class FantasyProjectBullets {
     public static class 空中祸害Bullet extends BasicBulletType {
         public 空中祸害Bullet(float damagee, float 倍率, float 速度, float 射速, float 击退) {
             shootEffect = CT3FxEffect.greenBomb2;
-            sprite = "ctcoresystem-月牙";
+            sprite = "ctcoresystem-Bullet月牙";
             damage = damagee;
             speed = 速度;
             ammoMultiplier = 倍率;
@@ -919,7 +921,7 @@ public class FantasyProjectBullets {
             smokeEffect = shootSmallSmoke;
             ammoMultiplier = 1;
             pierce = true;
-            //
+            shrinkX= shrinkY=0;
             trailColor = 尘埃Bullet颜色1;
             trailParam = 5;
             trailLength = 19;
@@ -1023,7 +1025,7 @@ public class FantasyProjectBullets {
                             layer = 110;
                         }}
                 );
-                hitSound = plasmaboom;
+                hitSound = explosionQuad;
                 intervalBullets = 3;
                 bulletInterval = 6;//每次产生的间隔时间
                 intervalBullet = new BasicBulletType(4, 888, "ctcoresystem-正四星") {{
@@ -1047,7 +1049,7 @@ public class FantasyProjectBullets {
                 fragAngle = 35;
                 fragBullet = new BasicBulletType(0, 0) {
                     {
-                        hitSound = plasmaboom;
+                        hitSound = explosionQuad;
                         speed = 16;
                         damage = 0;
                         collidesGround = false;
@@ -1075,7 +1077,7 @@ public class FantasyProjectBullets {
                             lifetime = 50;
                             damage = 5000;
                             lightColor = 尘埃Bullet颜色1;
-                            hitSound = laser;
+                            hitSound = shootLancer;
                             hitEffect = new ParticleEffect() {
                                 {
                                     line = true;
@@ -1094,7 +1096,7 @@ public class FantasyProjectBullets {
                             sideAngle = 25;
                             sideLength = 0;
                             sideWidth = 0;
-                            hitSound = plasmaboom;
+                            hitSound = explosionQuad;
                             lightRadius = 100;
                             statusDuration = 200;
                             trailColor = 尘埃Bullet颜色2;
@@ -1112,236 +1114,238 @@ public class FantasyProjectBullets {
                             damage = 666;
                             height = 35;
                             width = 35;
-                            hitEffect = new MultiEffect() {{
-                                effects = new Effect[]{
-                                        new ParticleEffect() {
-                                            {
-                                                lightOpacity = 0;
-                                                particles = 30;
-                                                length = 130;
-                                                baseLength = 10;
-                                                lifetime = 280;
-                                                layer = 106;
-                                                interp = Interp.swing;
-                                                sizeFrom = 24;
-                                                sizeTo = 10;
-                                                colorFrom = 尘埃Bullet颜色1;
-                                                colorTo = 尘埃Bullet颜色2;
-                                            }
-                                        },
+                            hitEffect = new MultiEffect() {
+                                {
+                                    effects = new Effect[]{
+                                            new ParticleEffect() {
+                                                {
+                                                    lightOpacity = 0;
+                                                    particles = 30;
+                                                    length = 130;
+                                                    baseLength = 10;
+                                                    lifetime = 280;
+                                                    layer = 106;
+                                                    interp = Interp.swing;
+                                                    sizeFrom = 24;
+                                                    sizeTo = 10;
+                                                    colorFrom = 尘埃Bullet颜色1;
+                                                    colorTo = 尘埃Bullet颜色2;
+                                                }
+                                            },
 
-                                        new ParticleEffect() {
-                                            {
-                                                lightOpacity = 0;
-                                                particles = 20;
-                                                length = 170;
-                                                baseLength = 10;
-                                                lifetime = 280;
-                                                layer = 106;
-                                                interp = Interp.swing;
-                                                sizeFrom = 30;
-                                                sizeTo = 23;
-                                                colorFrom = 尘埃Bullet颜色1;
-                                                colorTo = 尘埃Bullet颜色2;
-                                            }
-                                        },
-                                        new WaveEffect() {
-                                            {
-                                                lifetime = 125;
-                                                sizeFrom = 0;
-                                                sizeTo = 200;
-                                                strokeFrom = 8;
-                                                strokeTo = 0;
-                                                colorFrom = 尘埃Bullet颜色1;
-                                                colorTo = 尘埃Bullet颜色2;
-                                            }
-                                        },
-                                        new ParticleEffect() {
-                                            {
-                                                lightOpacity = 0;
-                                                length = 0;
-                                                sizeFrom = 75;
-                                                sizeTo = 0;
-                                                region = "ctcoresystem-菱形3";
-                                                particles = 1;
-                                                interp = Interp.swing;
-                                                lifetime = 200;
-                                                colorFrom = 尘埃Bullet颜色1;
-                                                colorTo = 尘埃Bullet颜色2;
-                                                spin = 8;
-                                            }
-                                        },
-                                        new ParticleEffect() {
-                                            {
-                                                lightOpacity = 0;
-                                                length = 0;
-                                                sizeFrom = 100;
-                                                sizeTo = 0;
-                                                region = "ctcoresystem-菱形2";
-                                                particles = 1;
-                                                interp = Interp.pow3Out;
-                                                lifetime = 200;
-                                                colorFrom = 尘埃Bullet颜色1;
-                                                colorTo = 尘埃Bullet颜色2;
-                                                spin = -8;
-                                            }
-                                        },
-                                        new ParticleEffect() {
-                                            {
-                                                particles = 1;
-                                                sizeFrom = 40;
-                                                sizeTo = 0;
-                                                length = 0;
-                                                interp = Interp.pow3Out;
-                                                lifetime = 200;
-                                                layer = 109;
-                                                colorFrom = 尘埃Bullet颜色1;
-                                                colorTo = 尘埃Bullet颜色2;
-                                            }
-                                        },
-                                        new ParticleEffect() {
-                                            {
-                                                particles = 1;
-                                                sizeFrom = 20;
-                                                sizeTo = 0;
-                                                interp = Interp.pow3Out;
-                                                length = 0;
-                                                lifetime = 200;
-                                                colorTo = colorFrom = Color.white;
+                                            new ParticleEffect() {
+                                                {
+                                                    lightOpacity = 0;
+                                                    particles = 20;
+                                                    length = 170;
+                                                    baseLength = 10;
+                                                    lifetime = 280;
+                                                    layer = 106;
+                                                    interp = Interp.swing;
+                                                    sizeFrom = 30;
+                                                    sizeTo = 23;
+                                                    colorFrom = 尘埃Bullet颜色1;
+                                                    colorTo = 尘埃Bullet颜色2;
+                                                }
+                                            },
+                                            new WaveEffect() {
+                                                {
+                                                    lifetime = 125;
+                                                    sizeFrom = 0;
+                                                    sizeTo = 200;
+                                                    strokeFrom = 8;
+                                                    strokeTo = 0;
+                                                    colorFrom = 尘埃Bullet颜色1;
+                                                    colorTo = 尘埃Bullet颜色2;
+                                                }
+                                            },
+                                            new ParticleEffect() {
+                                                {
+                                                    lightOpacity = 0;
+                                                    length = 0;
+                                                    sizeFrom = 75;
+                                                    sizeTo = 0;
+                                                    region = "ct_fantasy_project-菱形3";
+                                                    particles = 1;
+                                                    interp = Interp.swing;
+                                                    lifetime = 200;
+                                                    colorFrom = 尘埃Bullet颜色1;
+                                                    colorTo = 尘埃Bullet颜色2;
+                                                    spin = 8;
+                                                }
+                                            },
+                                            new ParticleEffect() {
+                                                {
+                                                    lightOpacity = 0;
+                                                    length = 0;
+                                                    sizeFrom = 100;
+                                                    sizeTo = 0;
+                                                    region = "ct_fantasy_project-菱形2";
+                                                    particles = 1;
+                                                    interp = Interp.pow3Out;
+                                                    lifetime = 200;
+                                                    colorFrom = 尘埃Bullet颜色1;
+                                                    colorTo = 尘埃Bullet颜色2;
+                                                    spin = -8;
+                                                }
+                                            },
+                                            new ParticleEffect() {
+                                                {
+                                                    particles = 1;
+                                                    sizeFrom = 40;
+                                                    sizeTo = 0;
+                                                    length = 0;
+                                                    interp = Interp.pow3Out;
+                                                    lifetime = 200;
+                                                    layer = 109;
+                                                    colorFrom = 尘埃Bullet颜色1;
+                                                    colorTo = 尘埃Bullet颜色2;
+                                                }
+                                            },
+                                            new ParticleEffect() {
+                                                {
+                                                    particles = 1;
+                                                    sizeFrom = 20;
+                                                    sizeTo = 0;
+                                                    interp = Interp.pow3Out;
+                                                    length = 0;
+                                                    lifetime = 200;
+                                                    colorTo = colorFrom = Color.white;
 
+                                                }
                                             }
-                                        }
 
+                                    };
+                                }
+                            };
+
+                            splashDamageRadius = 90;
+                            splashDamage = 37000;
+                            frontColor = 尘埃Bullet颜色1;
+                            backColor = 尘埃Bullet颜色2;
+                            fragBullets = 5;
+                            fragLifeMin = 0.5f;
+                            fragBullet = new BasicBulletType(3.5f, 450, "circle-bullet") {{
+
+                                //  status= freezing;
+                                lightRadius = 50;
+                                // statusDuration= 1000;
+                                hitSound = explosionQuad;
+                                trailColor = 尘埃Bullet颜色2;
+                                absorbable = false;
+                                trailParam = 5;
+                                trailLength = 12;
+                                trailWidth = 7;
+                                shrinkY = 0;
+                                shrinkX = 0;
+                                lightning = 17;
+                                lightningDamage = 500;
+                                lightningColor = 尘埃Bullet颜色2;
+                                lightningCone = 360;
+                                lightningLengthRand = 21;
+                                lightningLength = 11;
+                                lifetime = 100;
+                                height = 28;
+                                width = 28;
+                                hitEffect = new MultiEffect() {
+                                    {
+                                        effects = new Effect[]{
+                                                new ParticleEffect() {{
+                                                    lightOpacity = 0;
+                                                    particles = 10;
+                                                    length = 100;
+                                                    baseLength = 5;
+                                                    lifetime = 180;
+                                                    layer = 106;
+                                                    interp = Interp.circleOut;
+                                                    sizeFrom = 24;
+                                                    sizeTo = 10;
+                                                    colorFrom = 尘埃Bullet颜色1;
+                                                    colorTo = 尘埃Bullet颜色2;
+                                                }},
+                                                new ParticleEffect() {{
+                                                    lightOpacity = 0;
+                                                    particles = 10;
+                                                    length = 130;
+                                                    baseLength = 10;
+                                                    lifetime = 180;
+                                                    layer = 106;
+                                                    interp = Interp.circleOut;
+                                                    sizeFrom = 30;
+                                                    sizeTo = 23;
+                                                    colorFrom = 尘埃Bullet颜色1;
+                                                    colorTo = 尘埃Bullet颜色2;
+                                                    ;
+                                                }},
+                                                new WaveEffect() {{
+                                                    lifetime = 45;
+                                                    sizeFrom = 0;
+                                                    sizeTo = 70;
+                                                    strokeFrom = 6;
+                                                    strokeTo = 0;
+                                                    colorFrom = 尘埃Bullet颜色1;
+                                                    colorTo = 尘埃Bullet颜色2;
+                                                }},
+                                        };
+                                    }
                                 };
 
-
-                                splashDamageRadius = 90;
-                                splashDamage = 37000;
+                                trailEffect = none;
+                                homingRange = 170;
+                                homingPower = 0.0567F;
+                                splashDamageRadius = 54;
+                                splashDamage = 276;
                                 frontColor = 尘埃Bullet颜色1;
                                 backColor = 尘埃Bullet颜色2;
-                                fragBullets = 5;
-                                fragLifeMin = 0.5f;
-                                fragBullet = new BasicBulletType(3.5f, 450, "circle-bullet") {{
-
-                                    //  status= freezing;
-                                    lightRadius = 50;
-                                    // statusDuration= 1000;
-                                    hitSound = plasmaboom;
-                                    trailColor = 尘埃Bullet颜色2;
+                                fragBullets = 6;
+                                fragLifeMin = 0.3F;
+                                fragBullet = new BasicBulletType(0, 0, "circle-bullet") {{
+                                    //status= freezing;
+                                    statusDuration = 1000;
+                                    splashDamageRadius = 50;
+                                    splashDamage = 106;
                                     absorbable = false;
-                                    trailParam = 5;
-                                    trailLength = 12;
-                                    trailWidth = 7;
+                                    speed = 3;
                                     shrinkY = 0;
                                     shrinkX = 0;
-                                    lightning = 17;
-                                    lightningDamage = 500;
-                                    lightningColor = 尘埃Bullet颜色2;
-                                    lightningCone = 360;
-                                    lightningLengthRand = 21;
-                                    lightningLength = 11;
-                                    lifetime = 100;
-                                    height = 28;
-                                    width = 28;
-                                    hitEffect = new MultiEffect() {
-                                        {
-                                            effects = new Effect[]{
-                                                    new ParticleEffect() {{
-                                                        lightOpacity = 0;
-                                                        particles = 10;
-                                                        length = 100;
-                                                        baseLength = 5;
-                                                        lifetime = 180;
-                                                        layer = 106;
-                                                        interp = Interp.circleOut;
-                                                        sizeFrom = 24;
-                                                        sizeTo = 10;
-                                                        colorFrom = 尘埃Bullet颜色1;
-                                                        colorTo = 尘埃Bullet颜色2;
-                                                    }},
-                                                    new ParticleEffect() {{
-                                                        lightOpacity = 0;
-                                                        particles = 10;
-                                                        length = 130;
-                                                        baseLength = 10;
-                                                        lifetime = 180;
-                                                        layer = 106;
-                                                        interp = Interp.circleOut;
-                                                        sizeFrom = 30;
-                                                        sizeTo = 23;
-                                                        colorFrom = 尘埃Bullet颜色1;
-                                                        colorTo = 尘埃Bullet颜色2;
-                                                        ;
-                                                    }},
-                                                    new WaveEffect() {{
-                                                        lifetime = 45;
-                                                        sizeFrom = 0;
-                                                        sizeTo = 70;
-                                                        strokeFrom = 6;
-                                                        strokeTo = 0;
-                                                        colorFrom = 尘埃Bullet颜色1;
-                                                        colorTo = 尘埃Bullet颜色2;
-                                                    }},
-                                            };
-                                        }
-                                    };
-
+                                    trailColor = 尘埃Bullet颜色2;
+                                    trailParam = 5;
+                                    trailLength = 6;
+                                    trailWidth = 4;
+                                    lifetime = 80;
+                                    damage = 320;
                                     trailEffect = none;
-                                    homingRange = 170;
-                                    homingPower = 0.0567F;
-                                    splashDamageRadius = 54;
-                                    splashDamage = 276;
+                                    height = 13;
+                                    width = 13;
+                                    hitEffect = new ParticleEffect() {{
+                                        particles = 10;
+                                        length = 60;
+                                        lifetime = 46;
+                                        interp = Interp.circleOut;
+                                        cone = 360;
+                                        sizeFrom = 3;
+                                        sizeTo = 0;
+                                        colorFrom = 尘埃Bullet颜色1;
+                                        colorTo = 尘埃Bullet颜色2;
+                                    }};
+
                                     frontColor = 尘埃Bullet颜色1;
                                     backColor = 尘埃Bullet颜色2;
-                                    fragBullets = 6;
-                                    fragLifeMin = 0.3F;
-                                    fragBullet = new BasicBulletType(0, 0, "circle-bullet") {{
-                                        //status= freezing;
-                                        statusDuration = 1000;
-                                        splashDamageRadius = 50;
-                                        splashDamage = 106;
-                                        absorbable = false;
-                                        speed = 3;
-                                        shrinkY = 0;
-                                        shrinkX = 0;
-                                        trailColor = 尘埃Bullet颜色2;
-                                        trailParam = 5;
-                                        trailLength = 6;
-                                        trailWidth = 4;
-                                        lifetime = 80;
-                                        damage = 320;
-                                        trailEffect = none;
-                                        height = 13;
-                                        width = 13;
-                                        hitEffect = new ParticleEffect() {{
-                                            particles = 10;
-                                            length = 60;
-                                            lifetime = 46;
-                                            interp = Interp.circleOut;
-                                            cone = 360;
-                                            sizeFrom = 3;
-                                            sizeTo = 0;
-                                            colorFrom = 尘埃Bullet颜色1;
-                                            colorTo = 尘埃Bullet颜色2;
-                                        }};
-
-                                        frontColor = 尘埃Bullet颜色1;
-                                        backColor = 尘埃Bullet颜色2;
-                                        fragBullets = 1;
-                                        fragBullet = new ShrapnelBulletType() {{
-                                            serrations = 0;
-                                            splashDamageRadius = 47;
-                                            length = 122;
-                                            lifetime = 36;
-                                            width = 30;
-                                            lightColor = 尘埃Bullet颜色1;
-                                            fromColor = 尘埃Bullet颜色2;
-                                            toColor = 尘埃Bullet颜色3;
-                                            damage = 300;
-                                        }};
+                                    fragBullets = 1;
+                                    fragBullet = new ShrapnelBulletType() {{
+                                        serrations = 0;
+                                        splashDamageRadius = 47;
+                                        length = 122;
+                                        lifetime = 36;
+                                        width = 30;
+                                        lightColor = 尘埃Bullet颜色1;
+                                        fromColor = 尘埃Bullet颜色2;
+                                        toColor = 尘埃Bullet颜色3;
+                                        damage = 300;
                                     }};
                                 }};
                             }};
+
                         }};
 
                     }

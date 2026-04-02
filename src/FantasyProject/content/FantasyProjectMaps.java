@@ -8,7 +8,7 @@ import static FantasyProject.content.FantasyProjectPlanet.FantasyPlanet;
 
 public class FantasyProjectMaps {
     public static SectorPreset 零号, 盐碱荒滩, 冰冻森林, 生物质合成区, 陨石坑, 废墟海岸, 风吹海岛, 绵延群山, 提取前哨, 海岸线,
-            海军要塞, 真菌通道, 增生区, 油田, 冲击区, 荒芜裂谷, 核矩阵, 行星发射终端,
+            海军要塞, 真菌通道, 增生区, 油田, 冲击区, 荒芜裂谷, 核矩阵, 行星发射终端,熔岩要塞,赤色总部,
             战役;
 
     public static void load() {
@@ -52,7 +52,7 @@ public class FantasyProjectMaps {
             captureWave = 240;
             difficulty = 10;
         }};
-        盐碱荒滩 = new SectorPreset("CT3saltFlats", FantasyPlanet, 101) {{
+        盐碱荒滩 = new SectorPreset("FP-saltflats", FantasyPlanet, 101) {{
             difficulty = 7;
         }};
         提取前哨 = new SectorPreset("CT3extractionOutpost", FantasyPlanet, 165) {{
@@ -87,7 +87,13 @@ public class FantasyProjectMaps {
             difficulty = 10;
             isLastSector = true;
         }};
-
-
+        熔岩要塞 = new SectorPreset("FP熔", FantasyPlanet, 150) {{
+            difficulty = 10;
+            isLastSector = true;
+        }};
+        赤色总部 = new SectorPreset("FP赤", FantasyPlanet, 180) {{
+            difficulty = 10;
+            isLastSector = true;
+        }};
     }
 }

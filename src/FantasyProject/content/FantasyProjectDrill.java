@@ -15,7 +15,7 @@ import static CtCoreSystem.CoreSystem.type.CTTechTree.addToTree;
 import static mindustry.content.Blocks.*;
 import static mindustry.content.Fx.*;
 import static mindustry.content.Items.*;
-import static mindustry.gen.Sounds.respawning;
+import static mindustry.gen.Sounds.unitCreate;
 import static mindustry.type.Category.*;
 import static mindustry.type.ItemStack.with;
 
@@ -141,7 +141,7 @@ public class FantasyProjectDrill {
             size = 2;
             liquidCapacity = 30;
             updateEffect = smeltsmoke;
-            ambientSound = respawning;
+            ambientSound = unitCreate;
             ambientSoundVolume = 0.5f;
         }};
 
